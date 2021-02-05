@@ -2,6 +2,8 @@ package monarchs;
 /*
  * Link to 1st vid: https://www.youtube.com/watch?v=daHqowPkkWo
  * Explanation to everything in full in the video
+ * 
+ * 2nd vid: https://www.youtube.com/watch?v=oJ8gq1eMhnA
  */
 public class Monarch {
 	/*
@@ -33,32 +35,32 @@ public class Monarch {
 	}
 	
 	
-	//Accesser Method to return name of monarch
+	//Accessor Method to return name of monarch
 	//It's public so it's accessible to any programmer
 	public String getName() 
 	{
 		return name;
 	}
 	
-	//Accesser Method to return monarch's gender
+	//Accessor Method to return monarch's gender
 	public boolean getIsMale() 
 	{
 		return isMale;
 	}
 	
-	//Accesser Method to return start year of monarch's reign
+	//Accessor Method to return start year of monarch's reign
 	public int getStartYear() 
 	{
 		return startYear;
 	}
 	
-	//Method to return end year of monarch's reign
+	//Accessor Method to return end year of monarch's reign
 	public int getEndYear() 
 	{
 		return endYear;
 	}
 		
-	//An action to return how long the monarch ruled
+	//Accessor Method to return how long the monarch ruled
 	public int lengthOfReign() 
 	{
 		return endYear - startYear;
