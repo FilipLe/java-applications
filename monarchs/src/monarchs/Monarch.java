@@ -1,19 +1,24 @@
 package monarchs;
 /*
- * Link to vid: https://www.youtube.com/watch?v=daHqowPkkWo
+ * Link to 1st vid: https://www.youtube.com/watch?v=daHqowPkkWo
  * Explanation to everything in full in the video
  */
 public class Monarch {
-	String name;
+	/*
+	 * Private variables disable other programmers from accessing data directly, 
+	 * so that they need to use the Methods created below to access that data
+	 * This disables them from accidentally changing the data from a different class
+	 */
+	private String name;
 	
 	//Since there are only 2 genders, we only need to use boolean
-	boolean isMale;
+	private boolean isMale;
 	
 	//Start year of the monarch's reign
-	int startYear;
+	private int startYear;
 	
-	//End year of the monarch's reign
-	int endYear;
+	//Start year of the monarch's reign
+	private int endYear;
 	
 	
 	//Constructor 
@@ -27,8 +32,34 @@ public class Monarch {
 		this.endYear = endYear;
 	}
 	
-	//An action to calculate how long the monarch ruled
-	int lengthOfReign() 
+	
+	//Accesser Method to return name of monarch
+	//It's public so it's accessible to any programmer
+	public String getName() 
+	{
+		return name;
+	}
+	
+	//Accesser Method to return monarch's gender
+	public boolean getIsMale() 
+	{
+		return isMale;
+	}
+	
+	//Accesser Method to return start year of monarch's reign
+	public int getStartYear() 
+	{
+		return startYear;
+	}
+	
+	//Method to return end year of monarch's reign
+	public int getEndYear() 
+	{
+		return endYear;
+	}
+		
+	//An action to return how long the monarch ruled
+	public int lengthOfReign() 
 	{
 		return endYear - startYear;
 	}
