@@ -5,7 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
+/*
+ * Started second vid: https://www.youtube.com/watch?v=oJ8gq1eMhnA
+ * Left off at 6:46
+ */
 public class UIMain {
 
 	private JFrame frame;
