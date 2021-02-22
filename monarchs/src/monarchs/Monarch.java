@@ -11,8 +11,9 @@ import java.awt.image.BufferedImage;
  * 
  * 3rd vid:https://www.youtube.com/watch?v=zvHO6xv06rE
  * 
- * Now on 4th vid:https://odysee.com/@MrCressey:e/Monarch-App-part-4---Displaying-portraits:3
- * Currently on 22:22 in 4th vid
+ * 4th vid:https://odysee.com/@MrCressey:e/Monarch-App-part-4---Displaying-portraits:3
+ * 
+ * Now on 5th vid: https://odysee.com/@MrCressey:e/Monarch-App-part-5---Caching-portraits:0
  */
 public class Monarch {
 	/*
