@@ -17,6 +17,12 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.DefaultComboBoxModel;
 /*
  *
  */
@@ -26,10 +32,12 @@ public class UIMain {
 	private MonarchTableModel tableModel;
 	private JTabbedPane tabbedPane;
 	private JPanel tablePanel;
-	private JPanel infoPanel;
+	private JPanel addPanel;
 	private JTable table;
 	private JButton btnNewButton;
 	private JButton btnBack;
+	private JTextField nameTextField;
+	private JTextField urlTextField;
 
 	/**
 	 * Launch the application.
@@ -134,19 +142,79 @@ public class UIMain {
 		/*
 		 * Info panel
 		 */
-		infoPanel = new JPanel();
-		tabbedPane.addTab("Info", null, infoPanel, null);
-		infoPanel.setLayout(null);
+		addPanel = new JPanel();
+		tabbedPane.addTab("Info", null, addPanel, null);
+		addPanel.setLayout(null);
 		
-		btnBack = new JButton("Back");
+		
+		
+		JLabel lblNewLabel = new JLabel("Name");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel.setBounds(6, 6, 115, 30);
+		addPanel.add(lblNewLabel);
+		
+		JLabel lblGender = new JLabel("Gender");
+		lblGender.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblGender.setBounds(6, 43, 115, 30);
+		addPanel.add(lblGender);
+		
+		JLabel lblStartYear = new JLabel("Start Year");
+		lblStartYear.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblStartYear.setBounds(6, 73, 115, 30);
+		addPanel.add(lblStartYear);
+		
+		JLabel lblEndYear = new JLabel("End Year");
+		lblEndYear.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblEndYear.setBounds(6, 104, 115, 30);
+		addPanel.add(lblEndYear);
+		
+		nameTextField = new JTextField();
+		nameTextField.setBounds(133, 8, 290, 26);
+		addPanel.add(nameTextField);
+		nameTextField.setColumns(10);
+		
+		JComboBox genderComboBox = new JComboBox();
+		genderComboBox.setModel(new DefaultComboBoxModel(Gender.values()));
+		genderComboBox.setBounds(133, 46, 139, 27);
+		addPanel.add(genderComboBox);
+		
+		JSpinner startYearSpinner = new JSpinner();
+		startYearSpinner.setModel(new SpinnerNumberModel(1900.0, 1000.0, 2100.0, 1.0));
+		startYearSpinner.setBounds(133, 75, 97, 26);
+		addPanel.add(startYearSpinner);
+		
+		JSpinner endYearSpinner = new JSpinner();
+		endYearSpinner.setModel(new SpinnerNumberModel(1900.0, 1000.0, 2100.0, 1.0));
+		endYearSpinner.setBounds(133, 106, 97, 26);
+		addPanel.add(endYearSpinner);
+		
+		JLabel lblImage = new JLabel("Image URL");
+		lblImage.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblImage.setBounds(6, 129, 115, 30);
+		addPanel.add(lblImage);
+		
+		urlTextField = new JTextField();
+		urlTextField.setColumns(10);
+		urlTextField.setBounds(133, 131, 290, 26);
+		addPanel.add(urlTextField);
+		
+		//When the "Submit" button is clicked
+		btnBack = new JButton("Submit");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Get the information in the field and store it
+				String name = nameTextField.getText();
+				Gender gender = (Gender) genderComboBox.getSelectedItem();
+				int startYear = (int) startYearSpinner.getValue();
+				int endYear = (int) endYearSpinner.getValue();
+				String imageUrl = urlTextField.getText();
+				//Create new monarch with the given information
+				Monarch newMonarch = new Monarch(name, gender, startYear, endYear, imageUrl);
 				//Switch to first tab
 				tabbedPane.setSelectedIndex(0);
 			}
 		});
-		btnBack.setBounds(284, 170, 139, 50);
-		infoPanel.add(btnBack);
-		
+		btnBack.setBounds(284, 169, 139, 38);
+		addPanel.add(btnBack);	
 	}
 }
