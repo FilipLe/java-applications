@@ -8,7 +8,8 @@ public class MonarchTableModel extends AbstractTableModel{
 			//Format: Name: isMale : start of reign: end of reign
 			new Monarch("Henry VIII", true, 1509, 1547, "https://englishhistory.net/wp-content/uploads/2017/03/henry8afterholbein3.jpg"),
 			new Monarch("Mary I", false, 1553, 1558, "https://englishhistory.net/images/tudor/elizsister.jpg"),
-			new Monarch("Elizabeth I", false, 1558, 1603, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Darnley_stage_3.jpg/1200px-Darnley_stage_3.jpg")
+			new Monarch("Elizabeth I", false, 1558, 1603, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Darnley_stage_3.jpg/1200px-Darnley_stage_3.jpg"),
+			new Monarch("Richard III", true, 1483, 1485, "https://cdn.britannica.com/47/182247-050-644E75E2/Richard-III-panel-artist.jpg")
 	};
 	
 	public String getColumnName(int columnIndex) 
