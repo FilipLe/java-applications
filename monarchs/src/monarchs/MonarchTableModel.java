@@ -6,9 +6,9 @@ public class MonarchTableModel extends AbstractTableModel{
 	//Creating Monarchs in a private array (people cannot change the data)
 	private Monarch[] monarchs = new Monarch[] {
 			//Format: Name: isMale : start of reign: end of reign
-			new Monarch("Henry VIII", true, 1509, 1547),
-			new Monarch("Mary I", false, 1553, 1558),
-			new Monarch("Elizabeth I", false, 1558, 1603)
+			new Monarch("Henry VIII", true, 1509, 1547, "https://englishhistory.net/wp-content/uploads/2017/03/henry8afterholbein3.jpg"),
+			new Monarch("Mary I", false, 1553, 1558, "https://englishhistory.net/images/tudor/elizsister.jpg"),
+			new Monarch("Elizabeth I", false, 1558, 1603, "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Darnley_stage_3.jpg/1200px-Darnley_stage_3.jpg")
 	};
 	
 	public String getColumnName(int columnIndex) 
