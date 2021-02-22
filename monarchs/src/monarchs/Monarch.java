@@ -1,6 +1,7 @@
 package monarchs;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 /*
  * Link to 1st vid: https://www.youtube.com/watch?v=daHqowPkkWo
@@ -13,7 +14,9 @@ import java.awt.image.BufferedImage;
  * 
  * 4th vid:https://odysee.com/@MrCressey:e/Monarch-App-part-4---Displaying-portraits:3
  * 
- * Now on 5th vid: https://odysee.com/@MrCressey:e/Monarch-App-part-5---Caching-portraits:0
+ * 5th vid: https://odysee.com/@MrCressey:e/Monarch-App-part-5---Caching-portraits:0
+ * 
+ * Now on 6th vid: https://odysee.com/@MrCressey:e/Monarch-App-part-6---Data-entry-form:2
  */
 public class Monarch {
 	/*
@@ -45,7 +48,9 @@ public class Monarch {
 		this.isMale = isMale;
 		this.startYear = startYear;
 		this.endYear = endYear;
-		portrait = new Portrait(urlText);
+		
+		File file = new File(name);
+		portrait = new Portrait(file,urlText);
 	}
 	
 	
