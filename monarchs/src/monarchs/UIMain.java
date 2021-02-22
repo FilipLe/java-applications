@@ -11,8 +11,10 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 /*
@@ -93,6 +95,14 @@ public class UIMain {
 		btnNewButton.setBounds(284, 170, 139, 50);
 		tablePanel.add(btnNewButton);
 		
+		/*
+		 * Portrait label
+		 */
+		
+		JLabel portraitLabel = new JLabel("New label");
+		portraitLabel.setBounds(286, 7, 137, 159);
+		tablePanel.add(portraitLabel);
+		
 		
 		//Displaying portrait of the monarch in the clicked row
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -106,20 +116,20 @@ public class UIMain {
 				//If the row index is greater than 0, then the selected row is valid
 				//And also if this particular selection is the final selection, then we print out the monarch
 				if(rowIndex >= 0 && !e.getValueIsAdjusting()) {
-					//printing the monarch that is clicked
+					//displaying portrait of the monarch clicked
 					Monarch monarch = tableModel.getMonarch(rowIndex);
-					System.out.println(monarch);
+					
+					//using dimensions of label to work out how big the portraits need to be
+					int width = portraitLabel.getWidth();
+					int height = portraitLabel.getHeight();
+					
+					//getting the images
+					BufferedImage image = monarch.getImage(width,height);
+					portraitLabel.setIcon(new ImageIcon(image));		
 				}
 			}
 		});
 		
-		/*
-		 * Portrait
-		 */
-		
-		JLabel portraitLabel = new JLabel("New label");
-		portraitLabel.setBounds(286, 7, 137, 159);
-		tablePanel.add(portraitLabel);
 		
 		/*
 		 * Info panel
