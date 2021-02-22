@@ -17,6 +17,7 @@ import java.io.File;
  * 5th vid: https://odysee.com/@MrCressey:e/Monarch-App-part-5---Caching-portraits:0
  * 
  * Now on 6th vid: https://odysee.com/@MrCressey:e/Monarch-App-part-6---Data-entry-form:2
+ * Stopped at 26:22
  */
 public class Monarch {
 	/*
@@ -26,8 +27,8 @@ public class Monarch {
 	 */
 	private String name;
 	
-	//Since there are only 2 genders, we only need to use boolean
-	private boolean isMale;
+	//Gender of monarch
+	private Gender gender;
 	
 	//Start year of the monarch's reign
 	private int startYear;
@@ -40,12 +41,12 @@ public class Monarch {
 	
 	
 	//Constructor 
-	Monarch(String name, boolean isMale, int startYear, int endYear, String urlText)
+	Monarch(String name, Gender gender, int startYear, int endYear, String urlText)
 	{
 		//this.name refers to 'name' in line 7
 		//copy value of name (L20) inside the constructor into 'name' in the class
 		this.name = name;
-		this.isMale = isMale;
+		this.gender = gender;
 		this.startYear = startYear;
 		this.endYear = endYear;
 		
@@ -62,9 +63,9 @@ public class Monarch {
 	}
 	
 	//Accessor Method to return monarch's gender
-	public boolean getIsMale() 
+	public Gender getGender() 
 	{
-		return isMale;
+		return gender;
 	}
 	
 	//Accessor Method to return start year of monarch's reign
@@ -94,13 +95,17 @@ public class Monarch {
 	//Method to return Monarch's name
 	public String toString() 
 	{
-		if(isMale == true) 
+		if(gender == Gender.MALE) 
 		{
 			return "King " + name;
 		}
-		else
+		else if(gender == Gender.FEMALE)
 		{
 			return "Queen "+ name;
+		}
+		else 
+		{
+			return name;
 		}
 	}
 }
