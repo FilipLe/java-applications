@@ -4,6 +4,11 @@ package monarchs;
  * Explanation to everything in full in the video
  * 
  * 2nd vid: https://www.youtube.com/watch?v=oJ8gq1eMhnA
+ * Finished 2nd vid
+ * 
+ * 3rd vid:https://www.youtube.com/watch?v=zvHO6xv06rE
+ * 
+ * Now on 4th vid:https://odysee.com/@MrCressey:e/Monarch-App-part-4---Displaying-portraits:3
  */
 public class Monarch {
 	/*
