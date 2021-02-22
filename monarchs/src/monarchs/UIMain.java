@@ -5,12 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 /*
  *
  */
@@ -68,6 +72,10 @@ public class UIMain {
 		scrollPane.setBounds(6, 6, 277, 214);
 		tablePanel.add(scrollPane);
 		
+		/*
+		 * Table related stuff
+		 */
+		
 		table = new JTable();
 		//creates the table and saves it in the variable "tableModel", so that we can refer to it in the future
 		tableModel = new MonarchTableModel();
@@ -85,6 +93,37 @@ public class UIMain {
 		btnNewButton.setBounds(284, 170, 139, 50);
 		tablePanel.add(btnNewButton);
 		
+		
+		//Displaying portrait of the monarch in the clicked row
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {	
+				//Finding the row index of the row pressed
+				int rowIndex = table.getSelectedRow();
+				
+				//Ignore this value if this isn't the final value
+				//So it does the event below once, instead of twice when a row is clicked
+				//If the row index is greater than 0, then the selected row is valid
+				//And also if this particular selection is the final selection, then we print out the monarch
+				if(rowIndex >= 0 && !e.getValueIsAdjusting()) {
+					//printing the monarch that is clicked
+					Monarch monarch = tableModel.getMonarch(rowIndex);
+					System.out.println(monarch);
+				}
+			}
+		});
+		
+		/*
+		 * Portrait
+		 */
+		
+		JLabel portraitLabel = new JLabel("New label");
+		portraitLabel.setBounds(286, 7, 137, 159);
+		tablePanel.add(portraitLabel);
+		
+		/*
+		 * Info panel
+		 */
 		infoPanel = new JPanel();
 		tabbedPane.addTab("Info", null, infoPanel, null);
 		infoPanel.setLayout(null);
