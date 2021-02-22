@@ -210,6 +210,8 @@ public class UIMain {
 				String imageUrl = urlTextField.getText();
 				//Create new monarch with the given information
 				Monarch newMonarch = new Monarch(name, gender, startYear, endYear, imageUrl);
+				//Adding new monarch to the table (updating it)
+				tableModel.addMonarch(newMonarch);
 				//Switch to first tab
 				tabbedPane.setSelectedIndex(0);
 			}
