@@ -94,5 +94,8 @@ public class MonarchTableModel extends AbstractTableModel{
 		}
 		
 	}
-
+	
+	Monarch getMonarch(int index) {
+		return monarchs[index];
+	}
 }
