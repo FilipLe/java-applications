@@ -1,4 +1,7 @@
 package monarchs;
+
+import java.awt.image.BufferedImage;
+
 /*
  * Link to 1st vid: https://www.youtube.com/watch?v=daHqowPkkWo
  * Explanation to everything in full in the video
@@ -9,6 +12,7 @@ package monarchs;
  * 3rd vid:https://www.youtube.com/watch?v=zvHO6xv06rE
  * 
  * Now on 4th vid:https://odysee.com/@MrCressey:e/Monarch-App-part-4---Displaying-portraits:3
+ * Currently on 22:22 in 4th vid
  */
 public class Monarch {
 	/*
@@ -27,9 +31,12 @@ public class Monarch {
 	//Start year of the monarch's reign
 	private int endYear;
 	
+	//The monarch's portrait
+	private Portrait portrait;
+	
 	
 	//Constructor 
-	Monarch(String name, boolean isMale, int startYear, int endYear)
+	Monarch(String name, boolean isMale, int startYear, int endYear, String urlText)
 	{
 		//this.name refers to 'name' in line 7
 		//copy value of name (L20) inside the constructor into 'name' in the class
@@ -37,6 +44,7 @@ public class Monarch {
 		this.isMale = isMale;
 		this.startYear = startYear;
 		this.endYear = endYear;
+		portrait = new Portrait(urlText);
 	}
 	
 	
@@ -69,6 +77,12 @@ public class Monarch {
 	public int lengthOfReign() 
 	{
 		return endYear - startYear;
+	}
+	
+	//Accessor method to return the selected monarch's portrait
+	public BufferedImage getImage(int width, int height) 
+	{
+		return portrait.scaleImage(width, height);
 	}
 	
 	//Method to return Monarch's name
