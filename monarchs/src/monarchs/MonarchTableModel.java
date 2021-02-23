@@ -1,6 +1,7 @@
 package monarchs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -17,6 +18,13 @@ public class MonarchTableModel extends AbstractTableModel{
 	//arraylist to store the monarchs
 	//Arraylist is different from array that once an array is created, the size is fixed, but not in arraylists
 	private ArrayList<Monarch> monarchs = new ArrayList<>();
+	
+	
+	//Setting the table to start with the 4 fixed monarchs above
+	MonarchTableModel()
+	{
+		monarchs.addAll(Arrays.asList(presetMonarchs));
+	}
 	
 	public Monarch getMonarch(int rowIndex) {
 		return monarchs.get(rowIndex);
