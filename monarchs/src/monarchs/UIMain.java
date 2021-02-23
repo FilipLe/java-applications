@@ -179,12 +179,12 @@ public class UIMain {
 		addPanel.add(genderComboBox);
 		
 		JSpinner startYearSpinner = new JSpinner();
-		startYearSpinner.setModel(new SpinnerNumberModel(1900.0, 1000.0, 2100.0, 1.0));
+		startYearSpinner.setModel(new SpinnerNumberModel(1900, 1000, 2100, 1));
 		startYearSpinner.setBounds(133, 75, 97, 26);
 		addPanel.add(startYearSpinner);
 		
 		JSpinner endYearSpinner = new JSpinner();
-		endYearSpinner.setModel(new SpinnerNumberModel(1900.0, 1000.0, 2100.0, 1.0));
+		endYearSpinner.setModel(new SpinnerNumberModel(1900, 1000, 2100, 1));
 		endYearSpinner.setBounds(133, 106, 97, 26);
 		addPanel.add(endYearSpinner);
 		
