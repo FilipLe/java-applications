@@ -23,9 +23,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
-/*
- *
- */
+
 public class UIMain {
 
 	private JFrame frame;
