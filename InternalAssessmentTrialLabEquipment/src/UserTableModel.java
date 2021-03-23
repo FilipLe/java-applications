@@ -84,6 +84,11 @@ public class UserTableModel extends AbstractTableModel{
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		User user = users.get(rowIndex);
+		/*
+		 * RETURN lines messed up the usertablemodel
+		 * 
+		 * ERROR IN THESE RETURN LINES
+		 */
 		if(columnIndex == 0) 
 		{
 			return "Name";
