@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -10,9 +11,21 @@ import javax.swing.table.AbstractTableModel;
  * ADMIN can edit/delete user
  */
 public class UserTableModel extends AbstractTableModel{
+	
+	//Admin as default user
+	private User[] presetUser = new User[] 
+	{
+			new User("Admin", 0, "onetwothree")
+	};
+	
 	//Creating arrayList to store the users
 	private ArrayList<User> users = new ArrayList<>();
 	
+	//Add default to array
+	UserTableModel()
+	{
+		users.addAll(Arrays.asList(presetUser));
+	}
 	
 	/*
 	 * Get the user clicked on the table model ==> So that we can edit them, or delete them
