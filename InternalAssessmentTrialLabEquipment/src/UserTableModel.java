@@ -85,21 +85,21 @@ public class UserTableModel extends AbstractTableModel{
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		User user = users.get(rowIndex);
 		/*
-		 * RETURN lines messed up the usertablemodel
+		 * DISPLAYING INPUT ON TABLE
 		 * 
-		 * ERROR IN THESE RETURN LINES
+		 * Error fixed. Now need to fix error in addUser() in AdminCreateUser and  work on reading input from AdminCreateUser and displaying it on TableModel
 		 */
 		if(columnIndex == 0) 
 		{
-			return "Name";
+			return user.getName();
 		}
 		else if(columnIndex == 1)
 		{
-			return "UserID";
+			return user.getUserID();
 		}
 		else if(columnIndex == 2)
 		{
-			return "Password";
+			return user.getPassword();
 		}
 		else
 		{
