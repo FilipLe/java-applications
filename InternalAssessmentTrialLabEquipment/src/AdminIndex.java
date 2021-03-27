@@ -81,6 +81,9 @@ public class AdminIndex {
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close current window
+				frame.dispose();
+				//Take user to main screen
 				UIMain.main(null);
 			}
 		});
