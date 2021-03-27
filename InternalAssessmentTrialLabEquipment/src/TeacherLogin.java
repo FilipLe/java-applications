@@ -181,6 +181,9 @@ public class TeacherLogin {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close current window
+				frame.dispose();
+				//take user to main screen
 				UIMain.main(null);
 			}
 		});
