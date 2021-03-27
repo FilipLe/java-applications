@@ -48,6 +48,9 @@ public class AdminIndex {
 		JButton btnCreateUser = new JButton("Create User");
 		btnCreateUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close current screen
+				frame.dispose();
+				//Take to create user screen
 				AdminAddUser.main(null);
 			}
 		});
@@ -61,6 +64,9 @@ public class AdminIndex {
 		JButton btnEditUsers = new JButton("Edit User");
 		btnEditUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close current screen
+				frame.dispose();
+				//take to edit user screen
 				AdminEditUser.main(null);
 			}
 		});
