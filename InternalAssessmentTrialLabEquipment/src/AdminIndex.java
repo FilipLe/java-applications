@@ -42,15 +42,22 @@ public class AdminIndex {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/*
+		 * Option to create user
+		 */
 		JButton btnCreateUser = new JButton("Create User");
 		btnCreateUser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminCreateUser.main(null);
+				AdminAddUser.main(null);
 			}
 		});
 		btnCreateUser.setBounds(18, 26, 412, 53);
 		frame.getContentPane().add(btnCreateUser);
 		
+		
+		/*
+		 * Option to edit users
+		 */
 		JButton btnEditUsers = new JButton("Edit User");
 		btnEditUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,10 +67,17 @@ public class AdminIndex {
 		btnEditUsers.setBounds(18, 100, 412, 53);
 		frame.getContentPane().add(btnEditUsers);
 		
+		
+		/*
+		 * Equipment database
+		 */
 		JButton btnAccessEquipmentDatabase = new JButton("Access Equipment Database");
 		btnAccessEquipmentDatabase.setBounds(18, 166, 412, 53);
 		frame.getContentPane().add(btnAccessEquipmentDatabase);
 		
+		/*
+		 * Logout option
+		 */
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
