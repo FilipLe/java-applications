@@ -147,11 +147,11 @@ public class AdminLogin {
 				//Correct user and password
 				if(AdminID.equals("0") && password.equals("onetwothree")) 
 				{
+					//close current window
+					frame.dispose();
 					JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
 					adminID.setText(null);
 					adminPassword.setText(null);
-					//close current window
-					frame.dispose();
 					//Take user to admin index screen
 					AdminIndex.main(null);
 				}
@@ -197,6 +197,9 @@ public class AdminLogin {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Close current window
+				frame.dispose();
+				//Take user to main screen
 				UIMain.main(null);
 			}
 		});
