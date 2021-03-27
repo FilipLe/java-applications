@@ -52,18 +52,30 @@ public class UIMain {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/*
+		 * Take user to Admin Login
+		 */
 		JButton adminLoginButton = new JButton("Admin");
 		adminLoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close window
+				frame.dispose();
+				//take to admin login window
 				AdminLogin.main(null);
 			}
 		});
 		adminLoginButton.setBounds(110, 51, 229, 75);
 		frame.getContentPane().add(adminLoginButton);
 		
+		/*
+		 * Take user to Teacher Login
+		 */
 		JButton teacherLoginButton = new JButton("Teacher");
 		teacherLoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close window
+				frame.dispose();
+				//Launch Teacher Login Window
 				TeacherLogin.main(null);
 			}
 		});
