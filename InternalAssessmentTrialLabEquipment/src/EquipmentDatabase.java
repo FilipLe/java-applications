@@ -55,8 +55,14 @@ public class EquipmentDatabase {
 		DefaultMutableTreeNode equipmentTree=new DefaultMutableTreeNode("Equipment");  
 	    DefaultMutableTreeNode testTubes=new DefaultMutableTreeNode("Test Tubes");  
 	    DefaultMutableTreeNode beakers=new DefaultMutableTreeNode("Beakers");  
+	    DefaultMutableTreeNode funnels=new DefaultMutableTreeNode("Funnels");  
+	    DefaultMutableTreeNode cylinder=new DefaultMutableTreeNode("Graduated Cylinders");  
+	    DefaultMutableTreeNode thermometer=new DefaultMutableTreeNode("Thermometers");  
 	    equipmentTree.add(testTubes);  
 	    equipmentTree.add(beakers);  
+	    equipmentTree.add(funnels);  
+	    equipmentTree.add(cylinder);  
+	    equipmentTree.add(thermometer);  
 	    /*
 	     * Test Tubes
 	     */
@@ -74,6 +80,35 @@ public class EquipmentDatabase {
 	    DefaultMutableTreeNode beaker2092=new DefaultMutableTreeNode("2092");  
 	    DefaultMutableTreeNode beaker2093=new DefaultMutableTreeNode("2093"); 
 	    beakers.add(beaker2090);beakers.add(beaker2091);beakers.add(beaker2092);beakers.add(beaker2093);
+	    
+	    /*
+	     * Funnels
+	     */
+	    DefaultMutableTreeNode funnel3040=new DefaultMutableTreeNode("3040");  
+	    DefaultMutableTreeNode funnel3041=new DefaultMutableTreeNode("3041");  
+	    DefaultMutableTreeNode funnel3042=new DefaultMutableTreeNode("3042");  
+	    DefaultMutableTreeNode funnel3043=new DefaultMutableTreeNode("3043"); 
+	    funnels.add(funnel3040);funnels.add(funnel3041);funnels.add(funnel3042);funnels.add(funnel3043);
+	    
+	    /*
+	     * Graduated Cylinders
+	     */
+	    DefaultMutableTreeNode cylinder4080=new DefaultMutableTreeNode("4080");
+	    DefaultMutableTreeNode cylinder4081=new DefaultMutableTreeNode("4081");
+	    DefaultMutableTreeNode cylinder4082=new DefaultMutableTreeNode("4082");
+	    DefaultMutableTreeNode cylinder4083=new DefaultMutableTreeNode("4083");
+	    cylinder.add(cylinder4080);cylinder.add(cylinder4081);cylinder.add(cylinder4082);cylinder.add(cylinder4083);
+	    
+	    /*
+	     * Thermometers
+	     */
+	    DefaultMutableTreeNode therm5100=new DefaultMutableTreeNode("5100");
+	    DefaultMutableTreeNode therm5101=new DefaultMutableTreeNode("5101");
+	    DefaultMutableTreeNode therm5102=new DefaultMutableTreeNode("5102");
+	    DefaultMutableTreeNode therm5103=new DefaultMutableTreeNode("5103");
+	    DefaultMutableTreeNode therm5104=new DefaultMutableTreeNode("5104");
+	    thermometer.add(therm5100);thermometer.add(therm5101);thermometer.add(therm5102);thermometer.add(therm5103);thermometer.add(therm5104);
+	    
 	    
 	    JTree tree = new JTree(equipmentTree);
 		scrollPane.setViewportView(tree);
