@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EquipmentDatabase {
 
@@ -46,7 +49,7 @@ public class EquipmentDatabase {
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(6, 6, 438, 260);
+		scrollPane.setBounds(6, 6, 438, 207);
 		frame.getContentPane().add(scrollPane);
 		
 		DefaultMutableTreeNode equipmentTree=new DefaultMutableTreeNode("Equipment");  
@@ -74,5 +77,29 @@ public class EquipmentDatabase {
 	    
 	    JTree tree = new JTree(equipmentTree);
 		scrollPane.setViewportView(tree);
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//close current window
+				frame.dispose();
+				//Take user back to Index Screen
+				AdminIndex.main(null);
+			}
+		});
+		btnHome.setBounds(99, 225, 117, 29);
+		frame.getContentPane().add(btnHome);
+		
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//close current window
+				frame.dispose();
+				//Take user to Login Screen
+				UIMain.main(null);
+			}
+		});
+		btnLogOut.setBounds(228, 225, 117, 29);
+		frame.getContentPane().add(btnLogOut);
 	}
 }
