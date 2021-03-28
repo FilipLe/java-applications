@@ -78,6 +78,15 @@ public class AdminIndex {
 		 * Equipment database
 		 */
 		JButton btnAccessEquipmentDatabase = new JButton("Access Equipment Database");
+		btnAccessEquipmentDatabase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//close current frame
+				frame.dispose();
+				
+				//open the Equipment tree
+				EquipmentDatabase.main(null);
+			}
+		});
 		btnAccessEquipmentDatabase.setBounds(18, 166, 412, 53);
 		frame.getContentPane().add(btnAccessEquipmentDatabase);
 		
