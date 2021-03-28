@@ -51,7 +51,7 @@ public class AdminIndex {
 				//close current screen
 				frame.dispose();
 				//Take to create user screen
-				AdminAddUser.main(null);
+				AdminAddUsers.main(null);
 			}
 		});
 		btnCreateUser.setBounds(18, 26, 412, 53);
