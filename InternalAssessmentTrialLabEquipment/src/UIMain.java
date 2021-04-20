@@ -82,5 +82,16 @@ public class UIMain {
 		teacherLoginButton.setBounds(110, 148, 229, 75);
 		frame.getContentPane().add(teacherLoginButton);
 		
+		//Button to quit the application
+		JButton btnQuit = new JButton("Quit Program");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//close window
+				frame.dispose();
+			}
+		});
+		btnQuit.setBounds(327, 237, 117, 29);
+		frame.getContentPane().add(btnQuit);
+		
 	}
 }
