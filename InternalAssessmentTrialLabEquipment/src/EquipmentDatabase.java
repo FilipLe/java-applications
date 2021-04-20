@@ -22,6 +22,8 @@ public class EquipmentDatabase {
 	 * CHECK ONENOTE JAVA TRIAL BLUE ARROWS TO SEE THE DESIGN I AM GOING FOR
 	 * 
 	 * Now work on right half
+	 * 
+	 * ADD ON TOP A TEXT FIELD TO DISPLAY NUMBER AND TYPE OF ITEM OF THE ITEM CLICKED
 	 */
 	
 	
@@ -35,6 +37,8 @@ public class EquipmentDatabase {
 	private JTextField textBorrowStatus;
 	private JTextField textBorrowDate;
 	private JTextField textDeadline;
+	private JTextField textField_EquipmentType;
+	private JTextField textField_ITEM_ID;
 
 	/**
 	 * Launch the application.
@@ -66,6 +70,7 @@ public class EquipmentDatabase {
                 TreePath path = e.getPath();
                 int pathCount = path.getPathCount();
       
+                
                 //Printing the whole path of the node clicked       
                 for (int i = 0; i < pathCount; i++) {
                     System.out.print(path.getPathComponent(i).toString());
@@ -75,8 +80,43 @@ public class EquipmentDatabase {
                 }
                 System.out.println("");
                 
-                //Print the current path
-                System.out.print(path.getPathComponent(pathCount-1).toString()+"\n\n");
+                
+                //Print the outer most Child node ==> The Item ID
+                String itemId = path.getPathComponent(pathCount-1).toString();
+                System.out.print(itemId+"\n\n");
+                
+                
+                //Accessing the second outer most child node ==> equipment type
+                String equipmentType = path.getPathComponent(pathCount-2).toString();
+                
+                /*
+                 * TESTING
+                 * 
+                 * If statements (for now because we don't have json saved data) when specific item is pressed
+                 */           
+                if(itemId == "1000")
+                {
+                	textField_EquipmentType.setText(equipmentType);
+    				textField_ITEM_ID.setText(itemId);
+    				txtHolderName.setText("Joe Caveman");
+    				textHolderID.setText("3029");
+    				textBorrowStatus.setText("Borrowed");
+    				textBorrowDate.setText("26/09/2020");
+    				textDeadline.setText("26/10/2020");
+                	
+                }
+                
+                if(itemId == "1001")
+                {
+                	textField_EquipmentType.setText(equipmentType);
+    				textField_ITEM_ID.setText(itemId);
+    				txtHolderName.setText("Admin");
+    				textHolderID.setText("0");
+    				textBorrowStatus.setText("Available");
+    				textBorrowDate.setText("In Inventory");
+    				textDeadline.setText("In Inventory");
+                	
+                }
             }
         };
     }
@@ -199,7 +239,7 @@ public class EquipmentDatabase {
 				AdminIndex.main(null);
 			}
 		});
-		btnHome.setBounds(294, 172, 117, 29);
+		btnHome.setBounds(259, 237, 91, 29);
 		frame.getContentPane().add(btnHome);
 		
 		JButton btnLogOut = new JButton("Log Out");
@@ -211,7 +251,7 @@ public class EquipmentDatabase {
 				UIMain.main(null);
 			}
 		});
-		btnLogOut.setBounds(294, 213, 117, 29);
+		btnLogOut.setBounds(353, 237, 91, 29);
 		frame.getContentPane().add(btnLogOut);
 		
 		/*
@@ -224,62 +264,107 @@ public class EquipmentDatabase {
 		
 		JLabel labelHolderName = new JLabel("Holder Name:");
 		labelHolderName.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		labelHolderName.setBounds(269, 11, 86, 16);
+		labelHolderName.setBounds(269, 61, 86, 16);
 		frame.getContentPane().add(labelHolderName);
 		
 		JLabel labelHolderID = new JLabel("Holder ID:");
 		labelHolderID.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		labelHolderID.setBounds(269, 38, 86, 16);
+		labelHolderID.setBounds(269, 89, 86, 16);
 		frame.getContentPane().add(labelHolderID);
 		
 		JLabel labelStatus = new JLabel("Item Status:");
 		labelStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		labelStatus.setBounds(269, 66, 86, 16);
+		labelStatus.setBounds(269, 117, 86, 16);
 		frame.getContentPane().add(labelStatus);
 		
 		JLabel lblDateBorrowed = new JLabel("Date Borrowed:");
 		lblDateBorrowed.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		lblDateBorrowed.setBounds(269, 94, 86, 16);
+		lblDateBorrowed.setBounds(269, 145, 86, 16);
 		frame.getContentPane().add(lblDateBorrowed);
 		
 		JLabel lblDateToReturn = new JLabel("To Return Date:");
 		lblDateToReturn.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		lblDateToReturn.setBounds(269, 122, 86, 16);
+		lblDateToReturn.setBounds(269, 173, 86, 16);
 		frame.getContentPane().add(lblDateToReturn);
 		
+		//Box to display name of clicked item
 		txtHolderName = new JTextField();
 		txtHolderName.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		txtHolderName.setBounds(325, 11, 101, 16);
+		txtHolderName.setBounds(325, 60, 101, 16);
 		frame.getContentPane().add(txtHolderName);
 		txtHolderName.setColumns(10);
 		
+		//Box to display ID number of clicked item
 		textHolderID = new JTextField();
 		textHolderID.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		textHolderID.setColumns(10);
-		textHolderID.setBounds(325, 38, 101, 16);
+		textHolderID.setBounds(325, 88, 101, 16);
 		frame.getContentPane().add(textHolderID);
 		
+		//Box to display borrow status of clicked item
 		textBorrowStatus = new JTextField();
 		textBorrowStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		textBorrowStatus.setColumns(10);
-		textBorrowStatus.setBounds(325, 66, 101, 16);
+		textBorrowStatus.setBounds(325, 116, 101, 16);
 		frame.getContentPane().add(textBorrowStatus);
 		
+		//Box to display borrow date of clicked item		
 		textBorrowDate = new JTextField();
 		textBorrowDate.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		textBorrowDate.setColumns(10);
-		textBorrowDate.setBounds(335, 94, 91, 16);
+		textBorrowDate.setBounds(335, 144, 91, 16);
 		frame.getContentPane().add(textBorrowDate);
 		
+		//Box to display due date of clicked item
 		textDeadline = new JTextField();
 		textDeadline.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		textDeadline.setColumns(10);
-		textDeadline.setBounds(335, 122, 91, 16);
+		textDeadline.setBounds(335, 173, 91, 16);
 		frame.getContentPane().add(textDeadline);
+		
+		//Clear button
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_EquipmentType.setText(null);
+				textField_ITEM_ID.setText(null);
+				txtHolderName.setText(null);
+				textHolderID.setText(null);
+				textBorrowStatus.setText(null);
+				textBorrowDate.setText(null);
+				textDeadline.setText(null);
+			}
+		});
+		btnClear.setBounds(279, 206, 148, 29);
+		frame.getContentPane().add(btnClear);
+		
+		JLabel labelItemName = new JLabel("Equipment Type:");
+		labelItemName.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		labelItemName.setBounds(269, 11, 86, 16);
+		frame.getContentPane().add(labelItemName);
+		
+		//Box to display equipment name of clicked item
+		textField_EquipmentType = new JTextField();
+		textField_EquipmentType.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		textField_EquipmentType.setColumns(10);
+		textField_EquipmentType.setBounds(335, 10, 91, 16);
+		frame.getContentPane().add(textField_EquipmentType);
+		
+		JLabel lblEquipmentId = new JLabel("Equipment ID:");
+		lblEquipmentId.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
+		lblEquipmentId.setBounds(269, 33, 86, 16);
+		frame.getContentPane().add(lblEquipmentId);
+		
+		//Box to display equipment ID of clicked item
+		textField_ITEM_ID = new JTextField();
+		textField_ITEM_ID.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		textField_ITEM_ID.setColumns(10);
+		textField_ITEM_ID.setBounds(325, 33, 101, 16);
+		frame.getContentPane().add(textField_ITEM_ID);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(259, 6, 173, 154);
+		panel.setBounds(259, 6, 173, 192);
 		frame.getContentPane().add(panel);
 	}
 }
