@@ -21,9 +21,8 @@ public class EquipmentDatabase {
 	/*
 	 * CHECK ONENOTE JAVA TRIAL BLUE ARROWS TO SEE THE DESIGN I AM GOING FOR
 	 * 
-	 * Now work on right half
+	 * Now work on JSON for both Equipment managing and User managing
 	 * 
-	 * ADD ON TOP A TEXT FIELD TO DISPLAY NUMBER AND TYPE OF ITEM OF THE ITEM CLICKED
 	 */
 	
 	
