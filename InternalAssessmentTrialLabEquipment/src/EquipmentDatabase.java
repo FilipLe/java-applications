@@ -24,12 +24,7 @@ public class EquipmentDatabase {
 	 * Now work on JSON for both Equipment managing and User managing
 	 * 
 	 */
-	
-	
-	/*
-	 * CREATED BASIC TREE
-	 */
-	
+		
 	private JFrame frame;
 	private JTextField txtHolderName;
 	private JTextField textHolderID;
@@ -71,22 +66,21 @@ public class EquipmentDatabase {
       
                 
                 //Printing the whole path of the node clicked       
-                for (int i = 0; i < pathCount; i++) {
+                for (int i = 1; i < pathCount; i++) {
                     System.out.print(path.getPathComponent(i).toString());
                     if (i + 1 != pathCount) {
                         System.out.print("-->");
                     }
                 }
-                System.out.println("");
+                System.out.println("\n");
                 
                 
-                //Print the outer most Child node ==> The Item ID
+                //Accessing the outer most Child node ==> The Item ID
                 String itemId = path.getPathComponent(pathCount-1).toString();
-                System.out.print(itemId+"\n\n");
-                
                 
                 //Accessing the second outer most child node ==> equipment type
                 String equipmentType = path.getPathComponent(pathCount-2).toString();
+                
                 
                 /*
                  * TESTING
