@@ -33,6 +33,7 @@ public class EquipmentDatabase {
 	private JTextField textDeadline;
 	private JTextField textField_EquipmentType;
 	private JTextField textField_ITEM_ID;
+	public boolean available;
 
 	/**
 	 * Launch the application.
@@ -93,9 +94,13 @@ public class EquipmentDatabase {
     				textField_ITEM_ID.setText(itemId);
     				txtHolderName.setText("Joe Caveman");
     				textHolderID.setText("3029");
-    				textBorrowStatus.setText("Borrowed");
     				textBorrowDate.setText("26/09/2020");
     				textDeadline.setText("26/10/2020");
+    				if(available == true)
+    					textBorrowStatus.setText("Available");
+    				else
+    					textBorrowStatus.setText("Borrowed");
+    				
                 	
                 }
                 
