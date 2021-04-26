@@ -59,10 +59,6 @@ public class UserTableModel extends AbstractTableModel{
 		{
 			return "UserID";
 		}
-		else if(columnIndex == 2)
-		{
-			return "Password";
-		}
 		else
 		{
 			return null;
@@ -78,7 +74,7 @@ public class UserTableModel extends AbstractTableModel{
 
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 2;
 	}
 
 
