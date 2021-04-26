@@ -20,7 +20,6 @@ public class TeacherLogin {
 
 	private JFrame frame;
 	private JTextField teacherID;
-	private JPasswordField teacherPassword;
 	private JTextField teacherName;
 
 	/**
@@ -58,12 +57,12 @@ public class TeacherLogin {
 		 * TeacherID
 		 */
 		JLabel lblTeacherID = new JLabel("Teacher ID");
-		lblTeacherID.setBounds(63, 76, 72, 16);
+		lblTeacherID.setBounds(63, 116, 72, 16);
 		frame.getContentPane().add(lblTeacherID);
 		
 		teacherID = new JTextField();
 		teacherID.setColumns(10);
-		teacherID.setBounds(156, 71, 232, 26);
+		teacherID.setBounds(156, 111, 232, 26);
 		frame.getContentPane().add(teacherID);
 		
 		teacherID.addFocusListener(new FocusAdapter(){
@@ -85,43 +84,6 @@ public class TeacherLogin {
 			}
 		});
 		
-		/*
-		 * Password 
-		 */
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(63, 137, 61, 16);
-		frame.getContentPane().add(lblPassword);
-		
-		teacherPassword = new JPasswordField();
-		teacherPassword.setBounds(156, 132, 232, 26);
-		frame.getContentPane().add(teacherPassword);
-		
-		/*
-		 * Encrypting password when input
-		 * Decrypting reminder message when field is empty
-		 */
-		teacherPassword.addFocusListener(new FocusAdapter(){
-			@Override
-			public void focusGained(FocusEvent e) {
-				//When user clicks on the placeholder, the text shown below disappears
-				//When user writes, their input will be encrypted in the form of '•'
-				if(teacherPassword.getText().trim().equals("Please enter password")) {
-					teacherPassword.setForeground(Color.BLACK);
-					teacherPassword.setEchoChar ((char) '•');
-					teacherPassword.setText(""); 
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(teacherPassword.getText().trim().equals("")) {
-					//If user did not type anything, when user clicks on different label, text below appears in grey again
-					teacherPassword.setForeground(Color.LIGHT_GRAY);
-					//Display the message below in text form 
-					teacherPassword.setEchoChar ((char) 0);
-					teacherPassword.setText("Please enter password"); 
-				}
-			}
-		});
 		
 		/*
 		 * Clear Button
@@ -130,8 +92,7 @@ public class TeacherLogin {
 		clearButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				teacherName.setText(null);
-				teacherID.setText(null);
-				teacherPassword.setText(null); 
+				teacherID.setText(null); 
 			}
 		});
 		clearButton.setBounds(87, 191, 117, 29);
@@ -148,12 +109,12 @@ public class TeacherLogin {
 		 * Teacher Name
 		 */
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(63, 28, 72, 16);
+		lblName.setBounds(63, 54, 72, 16);
 		frame.getContentPane().add(lblName);
 		
 		teacherName = new JTextField();
 		teacherName.setColumns(10);
-		teacherName.setBounds(156, 23, 232, 26);
+		teacherName.setBounds(156, 49, 232, 26);
 		frame.getContentPane().add(teacherName);
 		
 		teacherName.addFocusListener(new FocusAdapter(){
