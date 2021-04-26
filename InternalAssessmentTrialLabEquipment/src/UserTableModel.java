@@ -15,7 +15,7 @@ public class UserTableModel extends AbstractTableModel{
 	//Admin as default user
 	private User[] presetUser = new User[] 
 	{
-			new User("Admin", 0, "onetwothree")
+			new User("Admin", 0)
 	};
 	
 	//Creating arrayList to store the users
@@ -97,10 +97,6 @@ public class UserTableModel extends AbstractTableModel{
 		else if(columnIndex == 1)
 		{
 			return user.getUserID();
-		}
-		else if(columnIndex == 2)
-		{
-			return user.getPassword();
 		}
 		else
 		{
