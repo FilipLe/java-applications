@@ -48,7 +48,6 @@ public class AdminAddUsers {
 	private JTextField textField_Name;
 	private JTextField textField_userID;
 	private int userID;
-	private JTextField textField_password;
 	private UserTableModel tableModel;
 	private JTable table;
 	FileWriter file;
@@ -103,13 +102,13 @@ public class AdminAddUsers {
 		 * NAME
 		 */
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(57, 44, 55, 16);
+		lblName.setBounds(57, 49, 55, 16);
 		enterData.add(lblName);
 		
 		textField_Name = new JTextField();
 		textField_Name.setText("Please enter teacher's name here");
 		textField_Name.setColumns(10);
-		textField_Name.setBounds(124, 39, 254, 26);
+		textField_Name.setBounds(124, 44, 254, 26);
 		enterData.add(textField_Name);
 		textField_Name.addFocusListener(new FocusAdapter(){
 			@Override
@@ -135,12 +134,12 @@ public class AdminAddUsers {
 		 * UserID
 		 */
 		JLabel lblUserID = new JLabel("UserID");
-		lblUserID.setBounds(57, 87, 55, 16);
+		lblUserID.setBounds(57, 109, 55, 16);
 		enterData.add(lblUserID);
 		
 		textField_userID = new JTextField();
 		textField_userID.setColumns(10);
-		textField_userID.setBounds(124, 82, 130, 26);
+		textField_userID.setBounds(124, 104, 130, 26);
 		enterData.add(textField_userID);
 		
 		textField_userID.addFocusListener(new FocusAdapter(){
@@ -168,7 +167,7 @@ public class AdminAddUsers {
 		 * GENERATE RANDOM UserID
 		 */
 		JButton btnGenerateID = new JButton("Generate");
-		btnGenerateID.setBounds(261, 82, 117, 29);
+		btnGenerateID.setBounds(266, 104, 117, 29);
 		enterData.add(btnGenerateID);
 		
 		btnGenerateID.addActionListener(new ActionListener() {
@@ -196,20 +195,7 @@ public class AdminAddUsers {
 				}
 			}
 		});
-		
-		
-		/*
-		 * Password
-		 */
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(57, 128, 73, 16);
-		enterData.add(lblPassword);
-		
-		textField_password = new JTextField();
-		textField_password.setColumns(10);
-		textField_password.setBounds(124, 123, 254, 26);
-		enterData.add(textField_password);
-		
+				
 		
 		/*
 		 * BACK button
@@ -245,8 +231,7 @@ public class AdminAddUsers {
 			 */
 			public void actionPerformed(ActionEvent e) {
 				//If one of the fields is empty (that is why we use OR == ||)
-				if(textField_password.getText().trim().equals("")|| 
-					textField_userID.getText().trim().equals("")||
+				if(	textField_userID.getText().trim().equals("")||
 					textField_Name.getText().trim().equals("")) 
 				{
 					JOptionPane.showMessageDialog(null, "There is an empty field. Please fill all fields to continue.","EMPTY FIELD", JOptionPane.ERROR_MESSAGE);
@@ -258,17 +243,15 @@ public class AdminAddUsers {
 					 */
 					String name = textField_Name.getText();
 					int userID = Integer.parseInt(textField_userID.getText());
-					String password = textField_password.getText();
 					
 					//Creating the new User from User class
-					User newUser = new User(name,userID,password);
+					User newUser = new User(name,userID);
 					
 					//Create JSON Object for each user
 					JSONObject user = new JSONObject();					
 					
 					user.put("Name",name);
 					user.put("UserID",userID);
-					user.put("Password", password);
 					usersList.add(user);
 					
 					/*
@@ -294,7 +277,6 @@ public class AdminAddUsers {
 					
 					System.out.println(newUser.getName());
 					System.out.println(newUser.getUserID());
-					System.out.println(newUser.getPassword());
 					
 					//Adding the new user to the table model (updating it)
 					tableModel.addUser(newUser);
