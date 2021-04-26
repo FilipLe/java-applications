@@ -2,13 +2,11 @@
 public class User {
 	private String name;
 	private int UserID;
-	private String password;
 	
-	User(String name, int UserID, String password)
+	User(String name, int UserID)
 	{
 		this.name = name;
 		this.UserID = UserID;
-		this.password = password;
 	}
 	
 	/*
@@ -25,12 +23,6 @@ public class User {
 	public int getUserID()
 	{
 		return UserID;
-	}
-	
-	//Output password
-	public String getPassword() 
-	{
-		return password;
 	}
 }
 
