@@ -7,6 +7,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,8 @@ public class EquipmentDatabase {
 	private JTextField textField_EquipmentType;
 	private JTextField textField_ITEM_ID;
 	public boolean available;
+	public String pathTakenIcon = "/Users/nguyenle/Desktop/My_Work/TBS/IB/Computer Science/Java Lessons with Mr Cressey/Internal Assessment Applications/borrowed.png";
+	public String pathAvailableIcon = "/Users/nguyenle/Desktop/My_Work/TBS/IB/Computer Science/Java Lessons with Mr Cressey/Internal Assessment Applications/available.png";
 
 	/**
 	 * Launch the application.
@@ -364,5 +367,20 @@ public class EquipmentDatabase {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(259, 6, 173, 192);
 		frame.getContentPane().add(panel);
+	}
+	
+	
+	//Method to change icon color based on Status
+	private void checkStatus(String Status, ) 
+	{
+		//Setting icon colors
+		if(Status.toUpperCase() == "Borrowed" || Status.toUpperCase() == "Taken") 
+		{
+			label.setIcon(new ImageIcon(pathTakenIcon));
+		}
+		else 
+		{
+			
+		}
 	}
 }
