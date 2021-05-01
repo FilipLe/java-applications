@@ -22,7 +22,7 @@ public class EquipmentDatabase {
 	/*
 	 * CHECK ONENOTE JAVA TRIAL BLUE ARROWS TO SEE THE DESIGN I AM GOING FOR
 	 * 
-	 * Now work on JSON for both Equipment managing and User managing
+	 * Now work on JSON for both Equipment managing and User managing, and then go to other Program with Status Lights
 	 * 
 	 */
 		
@@ -367,20 +367,5 @@ public class EquipmentDatabase {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(259, 6, 173, 192);
 		frame.getContentPane().add(panel);
-	}
-	
-	
-	//Method to change icon color based on Status
-	private void checkStatus(String Status, ) 
-	{
-		//Setting icon colors
-		if(Status.toUpperCase() == "Borrowed" || Status.toUpperCase() == "Taken") 
-		{
-			label.setIcon(new ImageIcon(pathTakenIcon));
-		}
-		else 
-		{
-			
-		}
 	}
 }
