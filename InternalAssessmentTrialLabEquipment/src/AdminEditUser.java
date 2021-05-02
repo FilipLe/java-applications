@@ -85,8 +85,13 @@ public class AdminEditUser {
 		
 		// Create table inside scroll pane
 		table = new JTable();
+		
 		//creates the table and saves it in the variable "tableModel", so that we can refer to it in the future
 		tableModel = new UserTableModel();
+		
+		//Loading in previous data of the table model
+		tableModel.load();
+		
 		//Set table model onto this table
 		table.setModel(tableModel);
 		scrollPane_USERS.setViewportView(table);
