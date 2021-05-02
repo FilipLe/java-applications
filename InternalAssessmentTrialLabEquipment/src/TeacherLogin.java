@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -18,7 +19,8 @@ public class TeacherLogin {
 	 * Teacher LOGIN SCREEN
 	 * 
 	 * 
-	 * PROBLEM: LINE 117 --> tableModel.getRowCount() not working
+	 * PROBLEM: Even if user exists, program does not recognize
+	 * Line 141-142
 	 */
 
 	private JFrame frame;
@@ -117,17 +119,35 @@ public class TeacherLogin {
 				String idText = teacherID.getText();
 				int id = Integer.parseInt(idText);
 				
-				System.out.println(tableModel.getRowCount());
-				//For loop to iterate through every user on the list to check if entered user exists
-				for(int counter = 0; counter < tableModel.getRowCount(); counter++) {
-					//Get User
+				//Accessing the table model
+				tableModel = new UserTableModel();
+				tableModel.load();
+				
+				//Counter to loop through list of users to check if user exists
+				int counter = 0; 
+				
+				//Status checker for the main loop
+				boolean exist = false;
+			
+				int tableSize = tableModel.getRowCount();
+				
+				//While loop to check if user exists
+				while(exist == false && counter < tableSize) {
+					//Get User by index
 					User user = tableModel.getUser(counter);
+
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
+					//ERROR FOUND: Problem with using if name matches "AND" id matches
+					//Programs runs when using "OR" instead of "AND"
+//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------
 					/*
 					//If both info of user exists in table model
-					if(user.getName() == userName && user.getUserID() == id) {
-						//To stop the loop
-						counter = tableModel.getRowCount(); 
-								
+					if(userName == user.getName() && id == user.getUserID()) {	
+						//End the loop
+						exist = true;
+						
 						//Empty field entries
 						teacherName.setText(null);
 						teacherID.setText(null);
@@ -139,17 +159,19 @@ public class TeacherLogin {
 						frame.dispose();
 						
 						//Take user to database
-						
-					}
-					
-					//if they don't exist in table model
-					else{
-						JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
-						teacherName.setText(null);
-						teacherID.setText(null);
 					}
 					*/
+					//Increment by 1 to move to next user
+					counter++;
 				}
+				/*
+				//if they don't exist in table model, "exist" would still be false after looping through users
+				if(exist == false) {
+					teacherName.setText(null);
+					teacherID.setText(null);
+					JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
+				}
+				*/
 			}
 		});
 		btnLogin.setBounds(245, 191, 117, 29);
