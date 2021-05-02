@@ -25,7 +25,11 @@ public class UserTableModel extends AbstractTableModel{
 	//Admin as default user
 	private User[] presetUser = new User[] 
 	{
+			/*
+			 * We do not need this anymore since data is already saved through JSON
+			 * 
 			new User("Admin", 0)
+			*/
 	};
 	
 	//Creating arrayList to store the users
@@ -77,13 +81,13 @@ public class UserTableModel extends AbstractTableModel{
 	
 	
 	public int getRowCount() {
-		// TODO Auto-generated method stub
+		// Amount of users
 		return usersList.size();
 	}
 
 
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
+		// 2 columns: Name + UserID
 		return 2;
 	}
 
