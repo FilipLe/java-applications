@@ -176,14 +176,22 @@ public class AdminLogin {
 							
 					if(AdminID.equals("0") && password.equals("onetwothree")) 
 					{
-					JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
-					adminID.setText(null);
-					adminPassword.setText(null);
-					AdminIndex.main(null);
+						//Empty field entries
+						adminID.setText(null);
+						adminPassword.setText(null);
+						
+						//Message Dialog Box
+						JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
+						
+						//Close current window
+						frame.dispose();
+						
+						//Take user to AdminIndex
+						AdminIndex.main(null);
 					}
 					else 
 					{
-					JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
 						adminID.setText(null);
 						adminPassword.setText(null);
 					}
