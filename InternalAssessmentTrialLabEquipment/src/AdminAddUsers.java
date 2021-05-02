@@ -18,9 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -29,6 +26,13 @@ import javax.swing.JTable;
  * 
  * https://crunchify.com/how-to-write-json-object-to-file-in-java/
  * https://www.youtube.com/watch?v=1zkoa2X2NlM
+ * 
+ * 
+ * 
+ * GO TO LINE 84
+ * WE ARE GOING TO ADD THE LOAD JSON DATA METHOD HERE
+ * https://www.youtube.com/watch?v=ywLKpHw1MjQ&t=133s
+ * 17:05
  */
 
 public class AdminAddUsers {
@@ -36,12 +40,7 @@ public class AdminAddUsers {
 	/*
 	 * PROBLEM
 	 * 
-	 * 
-	 * Program is able to save data entries into a json file, but everytime new data is entered, 
-	 * it overwrites previous data. 
-	 * 
-	 * What needs to be done:
-	 * How to append data instead of overwriting data when accessing json
+	 * Saving entered data into JSON
 	 */
 	private Random random = new Random();
 	private JFrame frame;
@@ -52,8 +51,6 @@ public class AdminAddUsers {
 	private JTable table;
 	FileWriter file;
 	
-	//Create JSON List to store all the users
-	JSONArray usersList = new JSONArray(); 
 
 	/**
 	 * Launch the application.
@@ -247,39 +244,14 @@ public class AdminAddUsers {
 					//Creating the new User from User class
 					User newUser = new User(name,userID);
 					
-					//Create JSON Object for each user
-					JSONObject user = new JSONObject();					
-					
-					user.put("Name",name);
-					user.put("UserID",userID);
-					usersList.add(user);
-					
-					/*
-					 * Creating file writer to save data entries
-					 */
-					
-					try 
-					{	
-						//create new file to save entries
-						file = new FileWriter("UserData.json");
-						//send data from jsonArray to json file while casting to json string
-						file.write(usersList.toJSONString());
-						//close writer
-						file.close();
-					}
-					catch(Exception ex) 
-					{
-						JOptionPane.showMessageDialog(null, "Error has occured");
-					}
-					//Printing out JSON objects to see if it works
-					JOptionPane.showMessageDialog(null, usersList);
-					
-					
 					System.out.println(newUser.getName());
 					System.out.println(newUser.getUserID());
 					
 					//Adding the new user to the table model (updating it)
 					tableModel.addUser(newUser);
+					
+					//SAVING the user everytime we add the user
+					tableModel.save();
 					
 					//Switch to second tab — Table displaying users
 					//tabbedPane.setSelectedIndex(1);
