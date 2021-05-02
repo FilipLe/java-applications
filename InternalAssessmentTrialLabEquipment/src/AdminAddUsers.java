@@ -22,17 +22,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /*
- * JSON
  * 
- * https://crunchify.com/how-to-write-json-object-to-file-in-java/
- * https://www.youtube.com/watch?v=1zkoa2X2NlM
- * 
- * 
- * 
- * GO TO LINE 84
- * WE ARE GOING TO ADD THE LOAD JSON DATA METHOD HERE
+ * JSON Video 
  * https://www.youtube.com/watch?v=ywLKpHw1MjQ&t=133s
- * 17:05
  */
 
 public class AdminAddUsers {
@@ -254,7 +246,7 @@ public class AdminAddUsers {
 					tableModel.save();
 					
 					//Switch to second tab — Table displaying users
-					//tabbedPane.setSelectedIndex(1);
+					tabbedPane.setSelectedIndex(1);
 					
 					
 				}
@@ -280,8 +272,13 @@ public class AdminAddUsers {
 		
 		// Create table inside scroll pane
 		table = new JTable();
+		
 		//creates the table and saves it in the variable "tableModel", so that we can refer to it in the future
 		tableModel = new UserTableModel();
+		
+		//Loading in previous data of the table model
+		tableModel.load();
+		
 		//Set table model onto this table
 		table.setModel(tableModel);
 		scrollPane_USER.setViewportView(table);
