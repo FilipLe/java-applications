@@ -16,11 +16,15 @@ public class TeacherLogin {
 	
 	/*
 	 * Teacher LOGIN SCREEN
+	 * 
+	 * 
+	 * PROBLEM: LINE 117 --> tableModel.getRowCount() not working
 	 */
 
 	private JFrame frame;
 	private JTextField teacherID;
 	private JTextField teacherName;
+	private UserTableModel tableModel;
 
 	/**
 	 * Launch the application.
@@ -53,8 +57,9 @@ public class TeacherLogin {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
 		/*
-		 * TeacherID
+		 * TeacherID field
 		 */
 		JLabel lblTeacherID = new JLabel("Teacher ID");
 		lblTeacherID.setBounds(63, 116, 72, 16);
@@ -98,15 +103,62 @@ public class TeacherLogin {
 		clearButton.setBounds(87, 191, 117, 29);
 		frame.getContentPane().add(clearButton);
 		
+		
+		
 		/*
 		 * Login Button
 		 */
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			//We need to load in JSON data and check if user input match with data entered
+			public void actionPerformed(ActionEvent e) {
+				//Getting the user inputs
+				String userName = teacherName.getText();
+				String idText = teacherID.getText();
+				int id = Integer.parseInt(idText);
+				
+				System.out.println(tableModel.getRowCount());
+				//For loop to iterate through every user on the list to check if entered user exists
+				for(int counter = 0; counter < tableModel.getRowCount(); counter++) {
+					//Get User
+					User user = tableModel.getUser(counter);
+					/*
+					//If both info of user exists in table model
+					if(user.getName() == userName && user.getUserID() == id) {
+						//To stop the loop
+						counter = tableModel.getRowCount(); 
+								
+						//Empty field entries
+						teacherName.setText(null);
+						teacherID.setText(null);
+						
+						//Message Dialog Box
+						JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
+						
+						//Close current window
+						frame.dispose();
+						
+						//Take user to database
+						
+					}
+					
+					//if they don't exist in table model
+					else{
+						JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
+						teacherName.setText(null);
+						teacherID.setText(null);
+					}
+					*/
+				}
+			}
+		});
 		btnLogin.setBounds(245, 191, 117, 29);
 		frame.getContentPane().add(btnLogin);
 		
+		
+		
 		/*
-		 * Teacher Name
+		 * Teacher Name Field
 		 */
 		JLabel lblName = new JLabel("Name");
 		lblName.setBounds(63, 54, 72, 16);
