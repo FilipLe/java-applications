@@ -147,10 +147,17 @@ public class AdminLogin {
 				//Correct user and password
 				if(AdminID.equals("0") && password.equals("onetwothree")) 
 				{
-					JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
+					//Empty field entries
 					adminID.setText(null);
 					adminPassword.setText(null);
-					//Take user to admin index screen
+					
+					//Message Dialog Box
+					JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
+					
+					//Close current window
+					frame.dispose();
+					
+					//Take user to AdminIndex
 					AdminIndex.main(null);
 				}
 				//Incorrect user and password
