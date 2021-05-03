@@ -220,8 +220,8 @@ public class EquipmentsTeachers {
 			public void actionPerformed(ActionEvent e) {
 				//close current window
 				frame.dispose();
-				//Take user back to Index Screen
-				AdminIndex.main(null);
+				//Take user back to Home Screen Screen
+				UIMain.main(null);
 			}
 		});
 		btnHome.setBounds(259, 237, 91, 29);
@@ -233,7 +233,7 @@ public class EquipmentsTeachers {
 				//close current window
 				frame.dispose();
 				//Take user to Login Screen
-				UIMain.main(null);
+				TeacherLogin.main(null);
 			}
 		});
 		btnLogOut.setBounds(353, 237, 91, 29);
