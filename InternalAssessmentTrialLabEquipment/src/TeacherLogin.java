@@ -19,8 +19,7 @@ public class TeacherLogin {
 	 * Teacher LOGIN SCREEN
 	 * 
 	 * 
-	 * PROBLEM: Even if user exists, program does not recognize
-	 * Line 141-142
+	 * NEXT STEP: Taking user to the equipment database
 	 */
 
 	private JFrame frame;
@@ -123,28 +122,22 @@ public class TeacherLogin {
 				tableModel = new UserTableModel();
 				tableModel.load();
 				
+				//Amount of users
+				int tableSize = tableModel.getRowCount();
+				
 				//Counter to loop through list of users to check if user exists
 				int counter = 0; 
 				
 				//Status checker for the main loop
-				boolean exist = false;
-			
-				int tableSize = tableModel.getRowCount();
+				boolean exist = false;		
 				
 				//While loop to check if user exists
 				while(exist == false && counter < tableSize) {
 					//Get User by index
 					User user = tableModel.getUser(counter);
-
-//---------------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------------
-					//ERROR FOUND: Problem with using if name matches "AND" id matches
-					//Programs runs when using "OR" instead of "AND"
-//---------------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------------
-					/*
+				
 					//If both info of user exists in table model
-					if(userName == user.getName() && id == user.getUserID()) {	
+					if(userName.equals(user.getName()) && id == user.getUserID()) {	
 						//End the loop
 						exist = true;
 						
@@ -159,19 +152,20 @@ public class TeacherLogin {
 						frame.dispose();
 						
 						//Take user to database
-					}
-					*/
+						EquipmentsTeachers.main(null);
+					}			
 					//Increment by 1 to move to next user
 					counter++;
 				}
-				/*
+				
+				
 				//if they don't exist in table model, "exist" would still be false after looping through users
 				if(exist == false) {
 					teacherName.setText(null);
 					teacherID.setText(null);
 					JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
 				}
-				*/
+				
 			}
 		});
 		btnLogin.setBounds(245, 191, 117, 29);
