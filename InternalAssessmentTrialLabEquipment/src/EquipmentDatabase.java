@@ -24,6 +24,7 @@ public class EquipmentDatabase {
 	 * 
 	 * Now work on JSON for both Equipment managing and User managing, and then go to other Program with Status Lights
 	 * 
+	 * EQUIPMENT DATABASE FOR TEACHERS
 	 */
 		
 	private JFrame frame;
@@ -133,7 +134,7 @@ public class EquipmentDatabase {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
