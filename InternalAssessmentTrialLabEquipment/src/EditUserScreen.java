@@ -19,7 +19,16 @@ public class EditUserScreen {
 	private int userID;
 	private JTextField textField_oldName;
 	private JTextField textField_oldID;
+	private UserTableModel tableModel;
+	private User user;
 
+	//Store the position of the being edited user
+	int positionOfUser;
+	
+	/*
+	 * LINES 188
+	 */
+	
 	/**
 	 * Launch the application.
 	 */
@@ -64,6 +73,41 @@ public class EditUserScreen {
 		frame.getContentPane().add(lblEditUserDetail);
 		
 		
+		
+		/*
+		 * OLD USER NAME
+		 */
+		JLabel lbl_oldName = new JLabel("Old Name");
+		lbl_oldName.setBounds(74, 48, 72, 16);
+		frame.getContentPane().add(lbl_oldName);
+		
+		textField_oldName = new JTextField();
+		textField_oldName.setColumns(10);
+		textField_oldName.setBounds(158, 43, 252, 26);
+		frame.getContentPane().add(textField_oldName);
+		
+		//Display the old name of the selected user in "AdminEditUser.java"
+		textField_oldName.setText(AdminEditUser.currentName);
+		
+		
+		
+		/*
+		 * OLD USER ID
+		 */
+		JLabel lbl_oldID = new JLabel("Old ID");
+		lbl_oldID.setBounds(74, 87, 72, 16);
+		frame.getContentPane().add(lbl_oldID);
+		
+		textField_oldID = new JTextField();
+		textField_oldID.setColumns(10);
+		textField_oldID.setBounds(158, 82, 252, 26);
+		frame.getContentPane().add(textField_oldID);
+		
+		//Display the old ID of the selected user in "AdminEditUser.java"
+		textField_oldID.setText(AdminEditUser.currentID);
+		
+		
+		
 		/*
 		 * New Name 
 		 */
@@ -75,23 +119,6 @@ public class EditUserScreen {
 		textField_NewName.setColumns(10);
 		textField_NewName.setBounds(158, 125, 252, 26);
 		frame.getContentPane().add(textField_NewName);
-		
-		/*
-		 * Back button
-		 */
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//close current window
-				frame.dispose();
-				
-				//Go back to EditUser table
-				AdminEditUser.main(null);
-			}
-		});
-		btnBack.setForeground(Color.DARK_GRAY);
-		btnBack.setBounds(6, 240, 72, 26);
-		frame.getContentPane().add(btnBack);
 		
 		
 		/*
@@ -139,40 +166,77 @@ public class EditUserScreen {
 		btnGenerateID.setBounds(293, 165, 117, 29);
 		frame.getContentPane().add(btnGenerateID);
 		
+		
+		/*
+		 * Back button
+		 */
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//close current window
+				frame.dispose();
+				
+				//Go back to EditUser table
+				AdminEditUser.main(null);
+			}
+		});
+		btnBack.setForeground(Color.DARK_GRAY);
+		btnBack.setBounds(6, 240, 72, 26);
+		frame.getContentPane().add(btnBack);
+		
+		/**
+		 * DOESN'T WORK YET
+		 */
+		/*
+		 * SAVE button
+		 */
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			//Access the user with the current name and id
+			public void actionPerformed(ActionEvent e) {
+				//Load up the table model
+				tableModel = new UserTableModel();
+				tableModel.load();
+				
+				/*
+				 * Delete the user, and then add new info
+				 */				
+				//Amount of users
+				int tableSize = tableModel.getRowCount();
+				
+				//Counter to loop through list of users to check if user exists
+				int counter = 0;
+				
+				//Status checker for the main loop
+				boolean exist = false;		
+				
+				//While loop to check if user exists
+				while(exist == false && counter < tableSize) {
+					//Get User by index
+					user = tableModel.getUser(counter);
+					
+					//Finding the user's position in the table model
+					if(AdminEditUser.currentName.equals(user.getName())) {	
+						
+						//End the loop
+						exist = true;
+						
+						//Store the position of that user (to delete it later)
+						positionOfUser = counter;
+					}
+					counter ++;
+				}
+				//Or clear row in Table Model, then save the Table model as JSON
+				
+				//Remove the user at position 'counter'
+				tableModel.removeRow(counter);
+				
+				//Save changes
+				tableModel.save();
+			}
+		});
 		btnSave.setBounds(123, 206, 180, 35);
 		frame.getContentPane().add(btnSave);
-		
-		
-		/*
-		 * OLD USER NAME
-		 */
-		JLabel lbl_oldName = new JLabel("Old Name");
-		lbl_oldName.setBounds(74, 48, 72, 16);
-		frame.getContentPane().add(lbl_oldName);
-		
-		textField_oldName = new JTextField();
-		textField_oldName.setColumns(10);
-		textField_oldName.setBounds(158, 43, 252, 26);
-		frame.getContentPane().add(textField_oldName);
-		
-		//Display the old name of the selected user in "AdminEditUser.java"
-		textField_oldName.setText(AdminEditUser.currentName);
-		
-		/*
-		 * OLD USER ID
-		 */
-		JLabel lbl_oldID = new JLabel("Old ID");
-		lbl_oldID.setBounds(74, 87, 72, 16);
-		frame.getContentPane().add(lbl_oldID);
-		
-		textField_oldID = new JTextField();
-		textField_oldID.setColumns(10);
-		textField_oldID.setBounds(158, 82, 252, 26);
-		frame.getContentPane().add(textField_oldID);
-		
-		//Display the old ID of the selected user in "AdminEditUser.java"
-		textField_oldID.setText(AdminEditUser.currentID);
 	}
 
 }
