@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 
 /*
@@ -47,7 +48,7 @@ public class UIMain {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -92,6 +93,11 @@ public class UIMain {
 		});
 		btnQuit.setBounds(327, 237, 117, 29);
 		frame.getContentPane().add(btnQuit);
+		
+		JLabel lblPleaseSelectUser = new JLabel("Please select a user:");
+		lblPleaseSelectUser.setFont(new Font("Lucida Grande", Font.BOLD, 17));
+		lblPleaseSelectUser.setBounds(29, 23, 241, 16);
+		frame.getContentPane().add(lblPleaseSelectUser);
 		
 	}
 }
