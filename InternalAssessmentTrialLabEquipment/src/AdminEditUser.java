@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,15 +18,17 @@ import javax.swing.JPanel;
 public class AdminEditUser {
 
 	/*
-	 * GO TO Monarch App UI Main for the Listener thingy
-	 * + LINES 165-180 to continue editing my Listener thingy
-	 * WORK ON EDIT BUTTON
+	 * Admin Edit User Screen
 	 */
 	private JFrame frame;
 	private JTable table;
 	private UserTableModel tableModel;
 	private JTextField textFieldName;
 	private JTextField textFieldID;
+	
+	//Variables that will be accessible across different classes (will be accessed in Edit User Screen)
+	public static String currentName;
+	public static String currentID;
 
 	/**
 	 * Launch the application.
@@ -65,22 +68,27 @@ public class AdminEditUser {
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//Close current window
-				frame.dispose();
-				
-				//Take user to edit user screen
-				EditUserScreen.main(null);
+				//If the fields is empty, we cannot edit user
+				if(textFieldName.getText().equals("") || textFieldID.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					//Close current window
+					frame.dispose();
+					
+					//Take user to edit user screen
+					EditUserScreen.main(null);
+				}
 			}
 		});
-		btnEdit.setBounds(276, 133, 152, 29);
+		btnEdit.setBounds(276, 147, 152, 29);
 		frame.getContentPane().add(btnEdit);
 		
 		/*
 		 * Delete button
 		 */
 		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(276, 174, 152, 29);
+		btnDelete.setBounds(276, 199, 152, 29);
 		frame.getContentPane().add(btnDelete);
 		
 		/*
@@ -115,13 +123,6 @@ public class AdminEditUser {
 		//Set table model onto this table
 		table.setModel(tableModel);
 		scrollPane_USERS.setViewportView(table);
-		
-		/*
-		 * Save Changes button
-		 */
-		JButton btnSaveChanges = new JButton("Save Changes");
-		btnSaveChanges.setBounds(276, 215, 152, 29);
-		frame.getContentPane().add(btnSaveChanges);
 		
 		/*
 		 * USER INFORMATION Title
@@ -190,6 +191,11 @@ public class AdminEditUser {
 					
 					//Display selected user's number
 					textFieldID.setText(String.valueOf(user.getUserID()));
+					
+					
+					//Assigning to variables to display them in the next EDIT screen at the "OLD info" section
+					currentName = user.getName();
+					currentID = String.valueOf(user.getUserID());
 				}
 			}
 		});
