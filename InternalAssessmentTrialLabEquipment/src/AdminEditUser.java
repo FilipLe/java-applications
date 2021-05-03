@@ -20,7 +20,7 @@ public class AdminEditUser {
 	/*
 	 * Admin Edit User Screen
 	 * 
-	 * WORK ON DELETING USER LINE95
+	 * WORK ON DELETING USER LINES 120-147
 	 */
 	private JFrame frame;
 	private JTable table;
@@ -32,6 +32,12 @@ public class AdminEditUser {
 	public static String currentName;
 	public static String currentID;
 
+	//The user 
+	private User user;
+
+	//Store the position of the being edited user
+	int positionOfUser;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -97,7 +103,48 @@ public class AdminEditUser {
 					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
+					//delete currentName and currentID in the json file --> find them and then delete
+					//Load up the table model
+					tableModel = new UserTableModel();
+					tableModel.load();
 					
+					/*
+					 * Delete the user
+					 */				
+					//Amount of users
+					int tableSize = tableModel.getRowCount();
+					
+					//Counter to loop through list of users to check if user exists
+					int counter = 0;
+					
+					//Status checker for the main loop
+					boolean exist = false;		
+					
+					//While loop to check if user exists
+					while(exist == false && counter < tableSize) {
+						//Get User by index
+						user = tableModel.getUser(counter);
+						
+						//Finding the user's position in the table model
+						if(AdminEditUser.currentName.equals(user.getName())) {	
+							
+							//End the loop
+							exist = true;
+							
+							//Store the position of that user (to delete it later)
+							positionOfUser = counter;
+						}
+						counter ++;
+					}
+					//Or clear row in Table Model, then save the Table model as JSON
+					/*
+					//Remove the user at position 'counter'
+					tableModel.removeRow(counter);
+					
+					//Save changes
+					tableModel.save();
+					*/
+					System.out.println("User at: "+ positionOfUser);
 				}
 			}
 		});
