@@ -16,9 +16,8 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 /*
  * For the ADMIN only
  * 
- * A table displaying all users, with all of their details
+ * Go to lines 116-123
  * 
- * ADMIN can edit/delete user
  */
 public class UserTableModel extends AbstractTableModel{
 	
@@ -114,6 +113,14 @@ public class UserTableModel extends AbstractTableModel{
 		}
 	}
 	
+	/*
+	 * Method to remove table row (to delete user)
+	 */
+	public void removeRow(int row)
+	{
+	    usersList.remove(row);
+	    fireTableRowsDeleted(row, row);
+	}
 	
 	
 	//Default path to save the data — home directory
@@ -196,4 +203,5 @@ public class UserTableModel extends AbstractTableModel{
 			usersList.add(user);
 		}
 	}
+	
 }
