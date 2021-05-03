@@ -19,6 +19,8 @@ public class AdminEditUser {
 
 	/*
 	 * Admin Edit User Screen
+	 * 
+	 * WORK ON DELETING USER LINE95
 	 */
 	private JFrame frame;
 	private JTable table;
@@ -88,6 +90,17 @@ public class AdminEditUser {
 		 * Delete button
 		 */
 		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//If the fields is empty, we cannot delete user
+				if(textFieldName.getText().equals("") || textFieldID.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					
+				}
+			}
+		});
 		btnDelete.setBounds(276, 199, 152, 29);
 		frame.getContentPane().add(btnDelete);
 		
