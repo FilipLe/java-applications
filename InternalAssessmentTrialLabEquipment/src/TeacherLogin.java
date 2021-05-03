@@ -143,7 +143,7 @@ public class TeacherLogin {
 						//Get User by index
 						User user = tableModel.getUser(counter);
 					
-						//If both info of user exists in table model
+						//If both info of user exists in json table model
 						if(userName.equals(user.getName()) && id == user.getUserID()) {	
 							//End the loop
 							exist = true;
@@ -182,8 +182,67 @@ public class TeacherLogin {
 		 * Logging in using ENTER KEY
 		 */
 		teacherID.addActionListener(new java.awt.event.ActionListener() {
-			
-		}
+			public void actionPerformed(ActionEvent e) {
+				//What happens if fields empty
+				if(teacherName.getText().equals("") || teacherID.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					//Getting the user inputs
+					String userName = teacherName.getText();
+					String idText = teacherID.getText();
+					int id = Integer.parseInt(idText);
+					
+					//Accessing the table model
+					tableModel = new UserTableModel();
+					tableModel.load();
+					
+					//Amount of users
+					int tableSize = tableModel.getRowCount();
+					
+					//Counter to loop through list of users to check if user exists
+					int counter = 0; 
+					
+					//Status checker for the main loop
+					boolean exist = false;		
+					
+					//While loop to check if user exists
+					while(exist == false && counter < tableSize) {
+						//Get User by index
+						User user = tableModel.getUser(counter);
+					
+						//If both info of user exists in json table model
+						if(userName.equals(user.getName()) && id == user.getUserID()) {	
+							//End the loop
+							exist = true;
+							
+							//Empty field entries
+							teacherName.setText(null);
+							teacherID.setText(null);
+							
+							//Message Dialog Box
+							JOptionPane.showMessageDialog(null, "Login Successful!","Login Successful", JOptionPane.INFORMATION_MESSAGE);
+							
+							//Close current window
+							frame.dispose();
+							
+							//Take user to database
+							EquipmentsTeachers.main(null);
+						}			
+						//Increment by 1 to move to next user
+						counter++;
+					}
+					
+					
+					//if they don't exist in table model, "exist" would still be false after looping through users
+					if(exist == false) {
+						teacherName.setText(null);
+						teacherID.setText(null);
+						JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 		
 		/*
 		 * Teacher Name Field
