@@ -25,6 +25,7 @@ public class TeacherLogin {
 	private JTextField teacherID;
 	private JTextField teacherName;
 	private UserTableModel tableModel;
+	public static String loggedInUser;
 
 	/**
 	 * Launch the application.
@@ -146,6 +147,9 @@ public class TeacherLogin {
 							//End the loop
 							exist = true;
 							
+							//Save the user's name so that later we know who to access data
+							loggedInUser = teacherName.getText();
+							
 							//Empty field entries
 							teacherName.setText(null);
 							teacherID.setText(null);
@@ -213,6 +217,9 @@ public class TeacherLogin {
 						if(userName.equals(user.getName()) && id == user.getUserID()) {	
 							//End the loop
 							exist = true;
+							
+							//Save the user's name so that later we know who to access data
+							loggedInUser = teacherName.getText();
 							
 							//Empty field entries
 							teacherName.setText(null);
