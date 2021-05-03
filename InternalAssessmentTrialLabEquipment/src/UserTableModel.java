@@ -113,15 +113,6 @@ public class UserTableModel extends AbstractTableModel{
 		}
 	}
 	
-	/*
-	 * Method to remove table row (to delete user)
-	 */
-	public void removeRow(int row)
-	{
-	    usersList.remove(row);
-	    fireTableRowsDeleted(row, row);
-	}
-	
 	
 	//Default path to save the data — home directory
 	private Path getDefaultPath() {
