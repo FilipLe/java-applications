@@ -19,6 +19,7 @@ public class AdminEditUser {
 	/*
 	 * GO TO Monarch App UI Main for the Listener thingy
 	 * + LINES 165-180 to continue editing my Listener thingy
+	 * WORK ON EDIT BUTTON
 	 */
 	private JFrame frame;
 	private JTable table;
@@ -62,6 +63,16 @@ public class AdminEditUser {
 		 * Edit button
 		 */
 		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Close current window
+				frame.dispose();
+				
+				//Take user to edit user screen
+				EditUserScreen.main(null);
+			}
+		});
 		btnEdit.setBounds(276, 133, 152, 29);
 		frame.getContentPane().add(btnEdit);
 		
@@ -168,13 +179,17 @@ public class AdminEditUser {
 				//Ignore this value if this isn't the final value
 				//So it does the event below once, instead of twice when a row is clicked
 				//If the row index is greater than 0, then the selected row is valid
-				//And also if this particular selection is the final selection, then we print out the monarch
+				//And also if this particular selection is the final selection, then we display info
 				if(rowIndex >= 0 && !e.getValueIsAdjusting()) {
 					
 					//Get User at the clicked position
 					User user = tableModel.getUser(rowIndex);
 					
+					//Display selected user's name
+					textFieldName.setText(user.getName());
 					
+					//Display selected user's number
+					textFieldID.setText(String.valueOf(user.getUserID()));
 				}
 			}
 		});
