@@ -18,11 +18,7 @@ import javax.swing.JPanel;
 public class TeachersHolding {
 
 	/*
-	 * Admin Edit User Screen
-	 * 
-	 * WORK ON DELETING USER LINES 120-147
-	 * 
-	 * Lines 151 — Deleting users
+	 * Window to display the list of borrowed items of each user
 	 */
 	private JFrame frame;
 	private JTable table;
@@ -31,12 +27,15 @@ public class TeachersHolding {
 	private JTextField textFieldID;
 	
 	//Variables that will be accessible across different classes (will be accessed in Edit User Screen)
-	public static String currentName;
-	public static String currentID;
+	/*public static String currentName;
+	public static String currentID;*/
 
+	/*
+	 * We need a class for equipment so that data regarding equipment is stored
 	//The user 
 	private User user;
-
+	*/
+	
 	//Store the position of the being edited user
 	int positionOfUser;
 	
