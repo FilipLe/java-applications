@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.Font;
 
 /*
  * 
@@ -73,7 +74,7 @@ public class AdminAddUsers {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -211,6 +212,11 @@ public class AdminAddUsers {
 		JButton btnSave = new JButton("Save");
 		btnSave.setBounds(134, 166, 180, 35);
 		enterData.add(btnSave);
+		
+		JLabel lblEnterUserDetails = new JLabel("ENTER USER DETAILS");
+		lblEnterUserDetails.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 17));
+		lblEnterUserDetails.setBounds(124, 16, 211, 16);
+		enterData.add(lblEnterUserDetails);
 		
 		btnSave.addActionListener(new ActionListener() {
 			/*
