@@ -11,6 +11,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Font;
 
 public class AdminLogin {
 	
@@ -49,7 +50,7 @@ public class AdminLogin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -219,5 +220,10 @@ public class AdminLogin {
 		btnBack.setForeground(Color.DARK_GRAY);
 		btnBack.setBounds(0, 240, 72, 26);
 		frame.getContentPane().add(btnBack);
+		
+		JLabel lblAdminLoginScreen = new JLabel("ADMIN LOGIN SCREEN");
+		lblAdminLoginScreen.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 17));
+		lblAdminLoginScreen.setBounds(126, 26, 211, 16);
+		frame.getContentPane().add(lblAdminLoginScreen);
 	}
 }
