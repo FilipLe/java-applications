@@ -227,12 +227,13 @@ public class EditUserScreen {
 					counter ++;
 				}
 				//Or clear row in Table Model, then save the Table model as JSON
-				
+				/*
 				//Remove the user at position 'counter'
 				tableModel.removeRow(counter);
 				
 				//Save changes
-				tableModel.save();
+				tableModel.save();*/
+				System.out.println("Position of user:" + positionOfUser);
 			}
 		});
 		btnSave.setBounds(123, 206, 180, 35);
