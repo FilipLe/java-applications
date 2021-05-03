@@ -12,6 +12,10 @@ public class TeachersIndex {
 
 	private JFrame frame;
 
+	/*
+	 * READ LINES 60-71 
+	 */
+	
 	/**
 	 * Launch the application.
 	 */
@@ -55,6 +59,14 @@ public class TeachersIndex {
 				
 				/*
 				 * DISPLAY A TABLE MODEL OF WHAT TEACHERS HAVE BORROWED, THERE WILL BE ALSO A RETURN BUTTON SO THEY CAN RETURN IT
+				 * 
+				 * First, when we log into teacher, we need a variable to store WHICH teacher is logged in
+				 * 
+				 * Then, when user presses "Check my holdings", we take them to a Window with a table model
+				 * 
+				 * Before the table model shows details, we need to specify which user we loading up
+				 *  
+				 * Everytime we start the program, it loads up the info of the user logged in
 				 */
 				
 			}
