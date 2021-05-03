@@ -12,6 +12,7 @@ import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Font;
 
 public class TeacherLogin {
 	
@@ -54,7 +55,7 @@ public class TeacherLogin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -63,12 +64,12 @@ public class TeacherLogin {
 		 * TeacherID field
 		 */
 		JLabel lblTeacherID = new JLabel("Teacher ID");
-		lblTeacherID.setBounds(63, 116, 72, 16);
+		lblTeacherID.setBounds(63, 139, 72, 16);
 		frame.getContentPane().add(lblTeacherID);
 		
 		teacherID = new JTextField();
 		teacherID.setColumns(10);
-		teacherID.setBounds(156, 111, 232, 26);
+		teacherID.setBounds(156, 134, 232, 26);
 		frame.getContentPane().add(teacherID);
 		
 		teacherID.addFocusListener(new FocusAdapter(){
@@ -177,12 +178,12 @@ public class TeacherLogin {
 		 * Teacher Name Field
 		 */
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(63, 54, 72, 16);
+		lblName.setBounds(63, 80, 72, 16);
 		frame.getContentPane().add(lblName);
 		
 		teacherName = new JTextField();
 		teacherName.setColumns(10);
-		teacherName.setBounds(156, 49, 232, 26);
+		teacherName.setBounds(156, 70, 232, 26);
 		frame.getContentPane().add(teacherName);
 		
 		teacherName.addFocusListener(new FocusAdapter(){
@@ -219,5 +220,13 @@ public class TeacherLogin {
 		btnBack.setForeground(Color.DARK_GRAY);
 		btnBack.setBounds(0, 240, 72, 26);
 		frame.getContentPane().add(btnBack);
+		
+		/*
+		 * Label Instruction
+		 */
+		JLabel lblinstruction = new JLabel("Enter user's info below:");
+		lblinstruction.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblinstruction.setBounds(63, 29, 241, 16);
+		frame.getContentPane().add(lblinstruction);
 	}
 }
