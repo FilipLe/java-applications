@@ -68,7 +68,7 @@ public class TeachersIndex {
 				 *  
 				 * Everytime we start the program, it loads up the info of the user logged in
 				 */
-				
+				TeachersHolding.main(null);
 			}
 		});
 		btnCheckAccount.setBounds(18, 62, 412, 53);
