@@ -5,6 +5,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class AdminIndex {
 
@@ -37,7 +39,7 @@ public class AdminIndex {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -105,6 +107,14 @@ public class AdminIndex {
 		btnLogout.setForeground(Color.DARK_GRAY);
 		btnLogout.setBounds(6, 240, 72, 26);
 		frame.getContentPane().add(btnLogout);
+		
+		/*
+		 * Text "Select Action"
+		 */
+		JLabel lblSelectAction = new JLabel("Select Action:");
+		lblSelectAction.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		lblSelectAction.setBounds(18, 6, 241, 16);
+		frame.getContentPane().add(lblSelectAction);
 	}
 
 }
