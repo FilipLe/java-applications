@@ -16,7 +16,7 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 /*
  * For the ADMIN only
  * 
- * Go to lines 116-123
+ * Go to lines 117-142 --> DELETING USERS
  * 
  */
 public class UserTableModel extends AbstractTableModel{
@@ -113,6 +113,33 @@ public class UserTableModel extends AbstractTableModel{
 		}
 	}
 	
+	
+	/*
+	 * Method to remove elements
+	 
+	public void removeElement(int position) {
+		//Converting all of the Users in the table model into JSON Objects
+		JsonArray ja = new JsonArray();
+				
+		//Remove the user at this position
+		usersList.remove(position);
+		
+		//For each user in the list of users, we will add them into the json array
+		for(User user : usersList) {
+			ja.add(user.toJsonObject());
+		}
+		
+		//Convert Json array to json text
+		String jsontext = Jsoner.serialize(ja);
+		
+		//Writing that json text to the file path
+		try {
+			Files.write(getDefaultPath(), jsontext.getBytes(), StandardOpenOption.CREATE);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	*/
 	
 	//Default path to save the data — home directory
 	private Path getDefaultPath() {
