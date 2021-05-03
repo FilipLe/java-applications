@@ -21,6 +21,8 @@ public class AdminEditUser {
 	 * Admin Edit User Screen
 	 * 
 	 * WORK ON DELETING USER LINES 120-147
+	 * 
+	 * Lines 151 — Deleting users
 	 */
 	private JFrame frame;
 	private JTable table;
@@ -145,6 +147,8 @@ public class AdminEditUser {
 					tableModel.save();
 					*/
 					System.out.println("User at: "+ positionOfUser);
+					
+					//tableModel.removeElement(positionOfUser);
 				}
 			}
 		});
