@@ -19,8 +19,6 @@ public class TeacherLogin {
 	/*
 	 * Teacher LOGIN SCREEN
 	 * 
-	 * 
-	 * NEXT STEP: Logging in using ENTER KEY Lines 181-186
 	 */
 
 	private JFrame frame;
