@@ -145,8 +145,13 @@ public class AdminLogin {
 				String AdminID = adminID.getText();
 				String password = adminPassword.getText();
 				
+				//If one of the fields are empty, prompt a message
+				if(AdminID.equals("") || password.equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
+				}
+				
 				//Correct user and password
-				if(AdminID.equals("0") && password.equals("onetwothree")) 
+				else if(AdminID.equals("0") && password.equals("onetwothree")) 
 				{
 					//Empty field entries
 					adminID.setText(null);
@@ -161,6 +166,7 @@ public class AdminLogin {
 					//Take user to AdminIndex
 					AdminIndex.main(null);
 				}
+				
 				//Incorrect user and password
 				else 
 				{
@@ -181,8 +187,14 @@ public class AdminLogin {
 		      public void actionPerformed(ActionEvent e) {
 				  	String AdminID = adminID.getText();
 					String password = adminPassword.getText();
-							
-					if(AdminID.equals("0") && password.equals("onetwothree")) 
+					
+					//If one of the fields are empty, prompt a message
+					if(AdminID.equals("") || password.equals("")) {
+						JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					//If user inputs correct details
+					else if(AdminID.equals("0") && password.equals("onetwothree")) 
 					{
 						//Empty field entries
 						adminID.setText(null);
@@ -197,6 +209,7 @@ public class AdminLogin {
 						//Take user to AdminIndex
 						AdminIndex.main(null);
 					}
+					//Incorrect details
 					else 
 					{
 						JOptionPane.showMessageDialog(null, "Incorrect ID or password","Incorrect ID or password", JOptionPane.ERROR_MESSAGE);
