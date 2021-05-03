@@ -47,33 +47,59 @@ public class EditUserScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		/*
+		 * Title
+		 */
 		frame = new JFrame("Equipment Management System");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		/*
+		 * Subheading
+		 */
 		JLabel lblEditUserDetail = new JLabel("EDIT USER INFORMATION");
 		lblEditUserDetail.setFont(new Font("Lucida Grande", Font.BOLD | Font.ITALIC, 17));
 		lblEditUserDetail.setBounds(123, 20, 241, 16);
 		frame.getContentPane().add(lblEditUserDetail);
 		
+		
+		/*
+		 * New Name 
+		 */
 		JLabel lblNewName = new JLabel("New Name");
 		lblNewName.setBounds(74, 130, 72, 16);
 		frame.getContentPane().add(lblNewName);
-		
-		JLabel lblNewId = new JLabel("New ID");
-		lblNewId.setBounds(74, 173, 72, 16);
-		frame.getContentPane().add(lblNewId);
 		
 		textField_NewName = new JTextField();
 		textField_NewName.setColumns(10);
 		textField_NewName.setBounds(158, 125, 252, 26);
 		frame.getContentPane().add(textField_NewName);
 		
+		/*
+		 * Back button
+		 */
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//close current window
+				frame.dispose();
+				
+				//Go back to EditUser table
+				AdminEditUser.main(null);
+			}
+		});
 		btnBack.setForeground(Color.DARK_GRAY);
 		btnBack.setBounds(6, 240, 72, 26);
 		frame.getContentPane().add(btnBack);
+		
+		
+		/*
+		 * New User ID
+		 */
+		JLabel lblNewId = new JLabel("New ID");
+		lblNewId.setBounds(74, 173, 72, 16);
+		frame.getContentPane().add(lblNewId);
 		
 		textField_NewID = new JTextField();
 		textField_NewID.setColumns(10);
@@ -82,7 +108,7 @@ public class EditUserScreen {
 		
 		
 		/*
-		 * Generate random ID for USER
+		 * Generate new random ID for USER
 		 */
 		JButton btnGenerateID = new JButton("Generate");
 		btnGenerateID.addActionListener(new ActionListener() {
@@ -117,23 +143,36 @@ public class EditUserScreen {
 		btnSave.setBounds(123, 206, 180, 35);
 		frame.getContentPane().add(btnSave);
 		
+		
+		/*
+		 * OLD USER NAME
+		 */
 		JLabel lbl_oldName = new JLabel("Old Name");
 		lbl_oldName.setBounds(74, 48, 72, 16);
 		frame.getContentPane().add(lbl_oldName);
-		
-		JLabel lbl_oldID = new JLabel("Old ID");
-		lbl_oldID.setBounds(74, 87, 72, 16);
-		frame.getContentPane().add(lbl_oldID);
 		
 		textField_oldName = new JTextField();
 		textField_oldName.setColumns(10);
 		textField_oldName.setBounds(158, 43, 252, 26);
 		frame.getContentPane().add(textField_oldName);
 		
+		//Display the old name of the selected user in "AdminEditUser.java"
+		textField_oldName.setText(AdminEditUser.currentName);
+		
+		/*
+		 * OLD USER ID
+		 */
+		JLabel lbl_oldID = new JLabel("Old ID");
+		lbl_oldID.setBounds(74, 87, 72, 16);
+		frame.getContentPane().add(lbl_oldID);
+		
 		textField_oldID = new JTextField();
 		textField_oldID.setColumns(10);
 		textField_oldID.setBounds(158, 82, 252, 26);
 		frame.getContentPane().add(textField_oldID);
+		
+		//Display the old ID of the selected user in "AdminEditUser.java"
+		textField_oldID.setText(AdminEditUser.currentID);
 	}
 
 }
