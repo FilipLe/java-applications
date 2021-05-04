@@ -15,7 +15,7 @@ import com.github.cliftonlabs.json_simple.Jsoner;
 
 /*
  * For the ADMIN only
- * 
+ * Lines 62-73 --> deleting users
  * Go to lines 117-142 --> DELETING USERS
  * 
  */
@@ -49,7 +49,7 @@ public class UserTableModel extends AbstractTableModel{
 	
 	
 	/*
-	 * Insert monarch into the Scroll Pane
+	 * Insert user into the Scroll Pane
 	 */
 	public void addUser(User newUser) {
 		//Adding new user into the table
@@ -59,6 +59,19 @@ public class UserTableModel extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 
+	/*
+	 * Delete user from the table
+	 */
+	/*
+	public void delete(int index) {
+		//Remove user at position 'index'
+		usersList.remove(index);
+		
+		//updates table
+		fireTableDataChanged();
+	}
+	*/
+	
 	/*
 	 * Column Headings (Name, UserID, Password
 	 */
