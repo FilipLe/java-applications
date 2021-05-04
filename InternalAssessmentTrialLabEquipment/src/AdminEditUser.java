@@ -22,7 +22,7 @@ public class AdminEditUser {
 	 * 
 	 * WORK ON DELETING USER LINES 120-147
 	 * 
-	 * Lines 151 — Deleting users
+	 * Lines 141-156 —-> Deleting users
 	 */
 	private JFrame frame;
 	private JTable table;
@@ -148,7 +148,13 @@ public class AdminEditUser {
 					*/
 					System.out.println("User at: "+ positionOfUser);
 					
-					//tableModel.removeElement(positionOfUser);
+					/*
+					//delete user at position 'positionOfUser'
+					tableModel.delete(positionOfUser);
+					
+					//Save changes
+					tableModel.save();
+					*/
 				}
 			}
 		});
@@ -161,6 +167,10 @@ public class AdminEditUser {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Close window
+				frame.dispose();
+				
+				//Take user to Admin Index Screen
 				AdminIndex.main(null);
 			}
 		});
