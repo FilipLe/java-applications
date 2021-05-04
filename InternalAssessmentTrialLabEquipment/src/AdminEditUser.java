@@ -150,7 +150,7 @@ public class AdminEditUser {
 					
 					/*
 					//delete user at position 'positionOfUser'
-					tableModel.delete(positionOfUser);
+					tableModel.delete(tableModel.getUser(positionOfUser));
 					
 					//Save changes
 					tableModel.save();
