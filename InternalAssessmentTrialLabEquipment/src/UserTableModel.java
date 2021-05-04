@@ -63,9 +63,9 @@ public class UserTableModel extends AbstractTableModel{
 	 * Delete user from the table
 	 */
 	/*
-	public void delete(int index) {
-		//Remove user at position 'index'
-		usersList.remove(index);
+	public void delete(User user) {
+		//Remove user 
+		usersList.remove(user);
 		
 		//updates table
 		fireTableDataChanged();
