@@ -56,6 +56,19 @@ public class EquipmentDatabase {
 	}
 
 	/**
+	 * Method to check if something is an integer
+	 */
+	public boolean isInteger( String input ) {
+	    try {
+	        Integer.parseInt( input );
+	        return true;
+	    }
+	    catch( Exception e ) {
+	        return false;
+	    }
+	}
+	
+	/**
 	 * Tree Listener — Doing something when user clicks
 	 */
 	private TreeSelectionListener createSelectionListener() {
@@ -87,37 +100,11 @@ public class EquipmentDatabase {
                 String equipmentType = path.getPathComponent(pathCount-2).toString();
                 
                 
-                /*
-                 * TESTING
-                 * 
-                 * If statements (for now because we don't have json saved data) when specific item is pressed
-                 */           
-                if(itemId == "1000")
-                {
-                	textField_EquipmentType.setText(equipmentType);
-    				textField_ITEM_ID.setText(itemId);
-    				txtHolderName.setText("Joe Caveman");
-    				textHolderID.setText("3029");
-    				textBorrowDate.setText("26/09/2020");
-    				textDeadline.setText("26/10/2020");
-    				if(available == true)
-    					textBorrowStatus.setText("Available");
-    				else
-    					textBorrowStatus.setText("Borrowed");
-    				
-                	
-                }
-                
-                if(itemId == "1001")
-                {
-                	textField_EquipmentType.setText(equipmentType);
-    				textField_ITEM_ID.setText(itemId);
-    				txtHolderName.setText("Admin");
-    				textHolderID.setText("0");
-    				textBorrowStatus.setText("Available");
-    				textBorrowDate.setText("In Inventory");
-    				textDeadline.setText("In Inventory");
-                	
+              //Only if the item Id clicked is an integer, we display on the information board
+                if(isInteger(itemId) == true) {
+	                //Set the fields to corresponding clicked item
+	                textField_EquipmentType.setText(equipmentType);
+					textField_ITEM_ID.setText(itemId);
                 }
             }
         };
