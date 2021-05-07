@@ -95,6 +95,10 @@ public class TeachersHolding {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//close frame
+				frame.dispose();
+				
+				//Take to teacher index screen
 				TeachersIndex.main(null);
 			}
 		});
