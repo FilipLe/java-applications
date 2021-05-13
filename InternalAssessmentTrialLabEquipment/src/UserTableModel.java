@@ -60,13 +60,67 @@ public class UserTableModel extends AbstractTableModel{
 	}
 
 	/*
-	 * Delete user from the table
+	 * UPDATE
+	public void update(String key, String newKey, String newValue) {
+ 	//Replacing items
+		JsonObject jo new JsonObject();
+		jo.remove(key);
+		jo.put(newKey, newValue);
+	}
 	 */
+	
+	
 	/*
-	public void delete(User user) {
-		//Remove user 
-		usersList.remove(user);
+	 *updating by finding key won't work because we will have multiple values with same key
+	 *Our keys are: 'name' and 'userID'
+	 *
+	public void update(String key, String newValue) {
+		//Declaring json variables
+		String jsonText = null;
+		JsonArray ja = null;
+		Path path = getDefaultPath();
 		
+		//Read in the text from the file
+		try {
+			jsonText = new String(Files.readAllBytes(path));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}		
+		
+		//Convert the text into Json Objects
+		try {
+			ja = (JsonArray)Jsoner.deserialize(jsonText);
+		} catch (JsonException e) {
+			throw new RuntimeException(e);
+		}
+		
+		for(Object object : ja) {
+			//Each object here is the teacher that we saved from the User class
+			
+			//Convert the object into json object first
+			JsonObject jo = (JsonObject)object;
+			
+			//Replacing items
+			jo.remove(key);
+			jo.put(key, newValue);
+			
+			//Create user from the json object
+			User user = User.fromJsonObject(jo);
+			
+			//add that user to the list of users
+			usersList.add(user);
+		}	
+	}
+	*/
+	
+	
+	/*
+	 * Edit user in the table
+	 
+	public void edit(int Position, User updatedUser) {
+		//Replace user at this position with updatedUser
+		usersList.set(Position, updatedUser);
+
 		//updates table
 		fireTableDataChanged();
 	}
@@ -108,9 +162,6 @@ public class UserTableModel extends AbstractTableModel{
 		User user = usersList.get(rowIndex);
 		/*
 		 * DISPLAYING INPUT ON TABLE
-		 * 
-		 * 
-		 * Error fixed. Now need to fix error in addUser() in AdminCreateUser and  work on reading input from AdminCreateUser and displaying it on TableModel
 		 */
 		if(columnIndex == 0) 
 		{
@@ -127,39 +178,12 @@ public class UserTableModel extends AbstractTableModel{
 	}
 	
 	
-	/*
-	 * Method to remove elements
-	 
-	public void removeElement(int position) {
-		//Converting all of the Users in the table model into JSON Objects
-		JsonArray ja = new JsonArray();
-				
-		//Remove the user at this position
-		usersList.remove(position);
-		
-		//For each user in the list of users, we will add them into the json array
-		for(User user : usersList) {
-			ja.add(user.toJsonObject());
-		}
-		
-		//Convert Json array to json text
-		String jsontext = Jsoner.serialize(ja);
-		
-		//Writing that json text to the file path
-		try {
-			Files.write(getDefaultPath(), jsontext.getBytes(), StandardOpenOption.CREATE);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	*/
 	
 	//Default path to save the data — home directory
 	private Path getDefaultPath() {
 		String home = System.getProperty("user.home");
 		return Paths.get(home).resolve("teachers.json");
 	}
-	
 	
 	
 	//Saving as Json Data without path provided - in user's home directory
