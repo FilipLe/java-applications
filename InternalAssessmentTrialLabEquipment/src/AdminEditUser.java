@@ -138,21 +138,11 @@ public class AdminEditUser {
 						}
 						counter ++;
 					}
-					//Or clear row in Table Model, then save the Table model as JSON
-					/*
-					//Remove the user at position 'counter'
-					tableModel.removeRow(counter);
-					
-					//Save changes
-					tableModel.save();
-					*/
+					//Access user at this position and replace them with new data
 					System.out.println("User at: "+ positionOfUser);
-					
 					/*
-					//delete user at position 'positionOfUser'
-					tableModel.delete(tableModel.getUser(positionOfUser));
+					tableModel.update(positionOfUser);
 					
-					//Save changes
 					tableModel.save();
 					*/
 				}
