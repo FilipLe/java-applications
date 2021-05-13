@@ -2,6 +2,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -26,7 +28,7 @@ public class EditUserScreen {
 	int positionOfUser;
 	
 	/*
-	 * LINES 188
+	 * LINES 188 - 205
 	 */
 	
 	/**
@@ -194,46 +196,59 @@ public class EditUserScreen {
 		btnSave.addActionListener(new ActionListener() {
 			//Access the user with the current name and id
 			public void actionPerformed(ActionEvent e) {
-				//Load up the table model
-				tableModel = new UserTableModel();
-				tableModel.load();
-				
-				/*
-				 * Delete the user, and then add new info
-				 */				
-				//Amount of users
-				int tableSize = tableModel.getRowCount();
-				
-				//Counter to loop through list of users to check if user exists
-				int counter = 0;
-				
-				//Status checker for the main loop
-				boolean exist = false;		
-				
-				//While loop to check if user exists
-				while(exist == false && counter < tableSize) {
-					//Get User by index
-					user = tableModel.getUser(counter);
-					
-					//Finding the user's position in the table model
-					if(AdminEditUser.currentName.equals(user.getName())) {	
-						
-						//End the loop
-						exist = true;
-						
-						//Store the position of that user (to delete it later)
-						positionOfUser = counter;
-					}
-					counter ++;
+				if(textField_NewName.getText().equals("") || textField_NewID.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
 				}
-				//Or clear row in Table Model, then save the Table model as JSON
-				/*
-				//Remove the user at position 'counter'
-				tableModel.removeRow(counter);
+				else {
+					
+					/**
+					 * To edit user detail, we replace there details at their index
+					 */
+					
+					//Load up the table model
+					tableModel = new UserTableModel();
+					tableModel.load();
+					
+					/*
+					 * Delete the user
+					 */				
+					//Amount of users
+					int tableSize = tableModel.getRowCount();
+					
+					//Counter to loop through list of users to check if user exists
+					int counter = 0;
+					
+					//Status checker for the main loop
+					boolean exist = false;		
+					
+					//While loop to check if user exists
+					while(exist == false && counter < tableSize) {
+						//Get User by index
+						user = tableModel.getUser(counter);
+						
+						//Finding the user's position in the table model
+						if(AdminEditUser.currentName.equals(user.getName())) {	
+							
+							//End the loop
+							exist = true;
+							
+							//Store the position of that user (to delete it later)
+							positionOfUser = counter;
+						}
+						counter ++;
+					}
+					//Access user at this position and replace them with new data
+					System.out.println("User at: "+ positionOfUser);
+					
+					User toBeUpdated = new User(AdminEditUser.currentName, Integer.parseInt(AdminEditUser.currentID));
+					
+					//tableModel.edit(positionOfUser, toBeUpdated);
+					
+					tableModel.save();
+					
+					System.out.println("Saved");
+				}
 				
-				//Save changes
-				tableModel.save();*/
-				System.out.println("Position of user:" + positionOfUser);
 			}
 		});
 		btnSave.setBounds(123, 206, 180, 35);
