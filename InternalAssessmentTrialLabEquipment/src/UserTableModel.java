@@ -26,7 +26,7 @@ public class UserTableModel extends AbstractTableModel{
 	{
 			/*
 			 * We do not need this anymore since data is already saved through JSON
-			 * 
+			 *
 			new User("Admin", 0)
 			*/
 	};
@@ -59,60 +59,11 @@ public class UserTableModel extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 
-	/*
-	 * UPDATE
-	public void update(String key, String newKey, String newValue) {
- 	//Replacing items
-		JsonObject jo new JsonObject();
-		jo.remove(key);
-		jo.put(newKey, newValue);
+	public void removeRowAt(int row) {
+		usersList.remove(row);
+	    //fireTableDataChanged();
+	    fireTableRowsDeleted(row - 1, usersList.size() - 1);
 	}
-	 */
-	
-	
-	/*
-	 *updating by finding key won't work because we will have multiple values with same key
-	 *Our keys are: 'name' and 'userID'
-	 *
-	public void update(String key, String newValue) {
-		//Declaring json variables
-		String jsonText = null;
-		JsonArray ja = null;
-		Path path = getDefaultPath();
-		
-		//Read in the text from the file
-		try {
-			jsonText = new String(Files.readAllBytes(path));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}		
-		
-		//Convert the text into Json Objects
-		try {
-			ja = (JsonArray)Jsoner.deserialize(jsonText);
-		} catch (JsonException e) {
-			throw new RuntimeException(e);
-		}
-		
-		for(Object object : ja) {
-			//Each object here is the teacher that we saved from the User class
-			
-			//Convert the object into json object first
-			JsonObject jo = (JsonObject)object;
-			
-			//Replacing items
-			jo.remove(key);
-			jo.put(key, newValue);
-			
-			//Create user from the json object
-			User user = User.fromJsonObject(jo);
-			
-			//add that user to the list of users
-			usersList.add(user);
-		}	
-	}
-	*/
-	
 	
 	/*
 	 * Edit user in the table
@@ -214,8 +165,6 @@ public class UserTableModel extends AbstractTableModel{
 		}
 		
 	}
-	
-	
 	
 	//Load method from the default path
 	public void load() {
