@@ -40,7 +40,7 @@ public class AdminAddUsers {
 	private JFrame frame;
 	private JTextField textField_Name;
 	private JTextField textField_userID;
-	private int userID;
+	private int userIDGenerated;
 	private UserTableModel tableModel;
 	private JTable table;
 	FileWriter file;
@@ -163,26 +163,26 @@ public class AdminAddUsers {
 		
 		btnGenerateID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				userID = random.nextInt(9999);
-				if(userID<10) 
+				userIDGenerated = random.nextInt(9999);
+				if(userIDGenerated<10) 
 				{
 					textField_userID.setForeground(Color.BLACK);
-					textField_userID.setText("000"+userID);
+					textField_userID.setText("000"+userIDGenerated);
 				}
-				else if(userID<100)
+				else if(userIDGenerated<100)
 				{
 					textField_userID.setForeground(Color.BLACK);
-					textField_userID.setText("00"+userID);
+					textField_userID.setText("00"+userIDGenerated);
 				}
-				else if(userID<1000) 
+				else if(userIDGenerated<1000) 
 				{
 					textField_userID.setForeground(Color.BLACK);
-					textField_userID.setText("0"+userID);
+					textField_userID.setText("0"+userIDGenerated);
 				}
 				else 
 				{
 					textField_userID.setForeground(Color.BLACK);
-					textField_userID.setText(Integer.toString(userID));
+					textField_userID.setText(Integer.toString(userIDGenerated));
 				}
 			}
 		});
@@ -238,7 +238,7 @@ public class AdminAddUsers {
 					 * Read the input in the fields
 					 */
 					String name = textField_Name.getText();
-					int userID = Integer.parseInt(textField_userID.getText());
+					String userID = textField_userID.getText();
 					
 					//Creating the new User from User class
 					User newUser = new User(name,userID);
