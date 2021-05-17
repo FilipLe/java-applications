@@ -19,6 +19,8 @@ public class TeacherLogin {
 	/*
 	 * Teacher LOGIN SCREEN
 	 * 
+	 * GO TO LINE 148-150
+	 * 
 	 */
 
 	private JFrame frame;
@@ -142,6 +144,10 @@ public class TeacherLogin {
 						User user = tableModel.getUser(counter);
 					
 						//If both info of user exists in json table model
+						
+						/*
+						 * CHANGE THIS CODE TO CHECK FIND USERID AND NAME BUT WITH NEW SAVE METHOD
+						 */
 						if(userName.equals(user.getName()) && id == user.getUserID()) {	
 							//End the loop
 							exist = true;
