@@ -252,7 +252,7 @@ public class EquipmentDatabase {
 				AdminIndex.main(null);
 			}
 		});
-		btnHome.setBounds(259, 225, 91, 41);
+		btnHome.setBounds(353, 209, 91, 29);
 		frame.getContentPane().add(btnHome);
 		
 		JButton btnLogOut = new JButton("Log Out");
@@ -264,7 +264,7 @@ public class EquipmentDatabase {
 				UIMain.main(null);
 			}
 		});
-		btnLogOut.setBounds(353, 225, 91, 41);
+		btnLogOut.setBounds(353, 237, 91, 29);
 		frame.getContentPane().add(btnLogOut);
 		
 		/*
@@ -322,7 +322,7 @@ public class EquipmentDatabase {
 				textBorrowStatus.setText(null);
 			}
 		});
-		btnClear.setBounds(278, 182, 148, 41);
+		btnClear.setBounds(353, 181, 91, 29);
 		frame.getContentPane().add(btnClear);
 		
 		JLabel labelItemName = new JLabel("Equipment Type:");
@@ -353,5 +353,23 @@ public class EquipmentDatabase {
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(259, 6, 173, 164);
 		frame.getContentPane().add(panel);
+		
+		/*
+		 * ITEM HAS BEEN RETURNED BUTTON
+		 */
+		JButton btnItemHasBeenReturned = new JButton("Returned");
+		btnItemHasBeenReturned.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * When this is clicked ==> Basically admin confirms that item has been returned 
+				 * holder ID and holder Name is set to default "Admin" and "0"
+				 * and Status goes from borrowed to available
+				 */
+				
+				
+			}
+		});
+		btnItemHasBeenReturned.setBounds(254, 194, 101, 60);
+		frame.getContentPane().add(btnItemHasBeenReturned);
 	}
 }
