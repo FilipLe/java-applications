@@ -240,9 +240,6 @@ public class EditUserScreen {
 					//Access user at this position and replace them with new data
 					System.out.println("User at: "+ positionOfUser);
 					
-					//User toBeUpdated = new User(AdminEditUser.currentName, Integer.parseInt(AdminEditUser.currentID));
-					//tableModel.edit(positionOfUser, toBeUpdated);
-					//tableModel.removeUser(toBeUpdated);
 					tableModel.removeRowAt(positionOfUser);
 					tableModel.save();
 					
