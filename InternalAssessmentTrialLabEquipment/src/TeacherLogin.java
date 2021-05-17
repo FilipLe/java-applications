@@ -25,6 +25,7 @@ public class TeacherLogin {
 	private JTextField teacherName;
 	private UserTableModel tableModel;
 	public static String loggedInUser;
+	public static String loggedInUserID;
 
 	/**
 	 * Launch the application.
@@ -151,6 +152,9 @@ public class TeacherLogin {
 							
 							//Save the user's name so that later we know who to access data
 							loggedInUser = teacherName.getText();
+							
+							//Save the user's ID (unique number) so that later we know who to access data
+							loggedInUserID = teacherID.getText();
 							
 							//Empty field entries
 							teacherName.setText(null);
