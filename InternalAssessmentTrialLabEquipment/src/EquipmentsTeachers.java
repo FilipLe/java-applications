@@ -339,58 +339,64 @@ public class EquipmentsTeachers {
 				}
 				else 
 				{ 
-					//
-					//We access the clicked item
-					//We delete it, and add it again, but with different HolderID, HolderName, and Status
-					//
-					
-					//Get the current selected item's ID
-					selectedEquipmentID = textField_ITEM_ID.getText();
-					
-					//Store the current selected item's Type
-					selectedEquipmentType = textField_EquipmentType.getText();
-					
-					
-					//Loading in JSON to check list of equipments and their properties
-                	tableModel = new EquipmentTableModel();
-					tableModel.load();
-					
-					//Looping through the equipments until we find the right equipment with matching ID
-					int tableSize = tableModel.getRowCount();
-					int counter = 0;
-					boolean found = false;
-					while(found == false && counter < tableSize) {
-						EquipmentClass equipment = tableModel.getEquipment(counter);
-						//Check if 
-						if(selectedEquipmentID.equals(equipment.getID())) {
-							found = true;
-							clickedItemPosition = counter;
-						}
-						counter++;
+					//If it is not available
+					if(textBorrowStatus.getText().equals("borrowed")) {
+						JOptionPane.showMessageDialog(null, "Item not available","Item not available", JOptionPane.ERROR_MESSAGE);
 					}
-					
-					//Now we delete that equipment
-					tableModel.removeRowAt(clickedItemPosition);
-					
-					//And add the equipment with same type, same ID, but new Holder Name, HolderID, and status
-					String equipmentType = selectedEquipmentType;
-					String equipmentID = selectedEquipmentID;
-					String newHolderName = currentUser;
-					String newHolderID = currentUserID;
-					String newStatus = "borrowed";
-					
-					//Create a new equipment based on that new info
-					EquipmentClass newEquipment = new EquipmentClass(equipmentType,equipmentID,newStatus,newHolderName,newHolderID);
-					tableModel.addEquipment(newEquipment);
-					
-					//Save the changes
-					tableModel.save();
-					
-					//close the current window
-					frame.dispose();
-					
-					//Go back to menu selection page for teachers
-					TeachersIndex.main(null);
+					else {
+						//
+						//We access the clicked item
+						//We delete it, and add it again, but with different HolderID, HolderName, and Status
+						//
+						
+						//Get the current selected item's ID
+						selectedEquipmentID = textField_ITEM_ID.getText();
+						
+						//Store the current selected item's Type
+						selectedEquipmentType = textField_EquipmentType.getText();
+						
+						
+						//Loading in JSON to check list of equipments and their properties
+	                	tableModel = new EquipmentTableModel();
+						tableModel.load();
+						
+						//Looping through the equipments until we find the right equipment with matching ID
+						int tableSize = tableModel.getRowCount();
+						int counter = 0;
+						boolean found = false;
+						while(found == false && counter < tableSize) {
+							EquipmentClass equipment = tableModel.getEquipment(counter);
+							//Check if 
+							if(selectedEquipmentID.equals(equipment.getID())) {
+								found = true;
+								clickedItemPosition = counter;
+							}
+							counter++;
+						}
+						
+						//Now we delete that equipment
+						tableModel.removeRowAt(clickedItemPosition);
+						
+						//And add the equipment with same type, same ID, but new Holder Name, HolderID, and status
+						String equipmentType = selectedEquipmentType;
+						String equipmentID = selectedEquipmentID;
+						String newHolderName = currentUser;
+						String newHolderID = currentUserID;
+						String newStatus = "borrowed";
+						
+						//Create a new equipment based on that new info
+						EquipmentClass newEquipment = new EquipmentClass(equipmentType,equipmentID,newStatus,newHolderName,newHolderID);
+						tableModel.addEquipment(newEquipment);
+						
+						//Save the changes
+						tableModel.save();
+						
+						//close the current window
+						frame.dispose();
+						
+						//Go back to menu selection page for teachers
+						TeachersIndex.main(null);
+					}
 				}
 			}
 		});
