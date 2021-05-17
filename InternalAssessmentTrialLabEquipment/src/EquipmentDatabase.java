@@ -36,6 +36,7 @@ public class EquipmentDatabase {
 	public boolean available;
 	private EquipmentTableModel tableModel;
 	private EquipmentClass clickedEquipment;
+	private int positionOfEquipment;
 	
 
 	/**
@@ -114,12 +115,13 @@ public class EquipmentDatabase {
 						EquipmentClass equipment = tableModel.getEquipment(counter);
 						if(itemId.equals(equipment.getID())) {
 							found = true;
+							positionOfEquipment = counter;
 						}
 						counter++;
 					}
 					
 					//Extract all the properties of that equipment
-					clickedEquipment = tableModel.getEquipment(counter);
+					clickedEquipment = tableModel.getEquipment(positionOfEquipment);
 					
 					//Set the fields to corresponding clicked item
 	                textField_EquipmentType.setText(equipmentType);
@@ -228,8 +230,7 @@ public class EquipmentDatabase {
 	    DefaultMutableTreeNode therm5101=new DefaultMutableTreeNode("5101");
 	    DefaultMutableTreeNode therm5102=new DefaultMutableTreeNode("5102");
 	    DefaultMutableTreeNode therm5103=new DefaultMutableTreeNode("5103");
-	    DefaultMutableTreeNode therm5104=new DefaultMutableTreeNode("5104");
-	    thermometer.add(therm5100);thermometer.add(therm5101);thermometer.add(therm5102);thermometer.add(therm5103);thermometer.add(therm5104);
+	    thermometer.add(therm5100);thermometer.add(therm5101);thermometer.add(therm5102);thermometer.add(therm5103);
 	    
 	    /*
 	     *--------------------------------------------------------------------------------------------- 
