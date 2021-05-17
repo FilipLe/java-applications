@@ -31,8 +31,6 @@ public class EquipmentDatabase {
 	private JTextField txtHolderName;
 	private JTextField textHolderID;
 	private JTextField textBorrowStatus;
-	private JTextField textBorrowDate;
-	private JTextField textDeadline;
 	private JTextField textField_EquipmentType;
 	private JTextField textField_ITEM_ID;
 	public boolean available;
@@ -103,8 +101,12 @@ public class EquipmentDatabase {
                 
               //Only if the item Id clicked is an integer, we display on the information board
                 if(isInteger(itemId) == true) {
-					tableModel = new EquipmentTableModel();
+					
+                	//Loading in JSON to check list of equipments and their properties
+                	tableModel = new EquipmentTableModel();
 					tableModel.load();
+					
+					//Looping through the equipments until we find the right one
 					int tableSize = tableModel.getRowCount();
 					int counter = 0;
 					boolean found = false;
@@ -116,6 +118,7 @@ public class EquipmentDatabase {
 						counter++;
 					}
 					
+					//Extract all the properties of that equipment
 					clickedEquipment = tableModel.getEquipment(counter);
 					
 					//Set the fields to corresponding clicked item
@@ -248,7 +251,7 @@ public class EquipmentDatabase {
 				AdminIndex.main(null);
 			}
 		});
-		btnHome.setBounds(259, 237, 91, 29);
+		btnHome.setBounds(259, 225, 91, 41);
 		frame.getContentPane().add(btnHome);
 		
 		JButton btnLogOut = new JButton("Log Out");
@@ -260,7 +263,7 @@ public class EquipmentDatabase {
 				UIMain.main(null);
 			}
 		});
-		btnLogOut.setBounds(353, 237, 91, 29);
+		btnLogOut.setBounds(353, 225, 91, 41);
 		frame.getContentPane().add(btnLogOut);
 		
 		/*
@@ -286,16 +289,6 @@ public class EquipmentDatabase {
 		labelStatus.setBounds(269, 117, 86, 16);
 		frame.getContentPane().add(labelStatus);
 		
-		JLabel lblDateBorrowed = new JLabel("Date Borrowed:");
-		lblDateBorrowed.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		lblDateBorrowed.setBounds(269, 145, 86, 16);
-		frame.getContentPane().add(lblDateBorrowed);
-		
-		JLabel lblDateToReturn = new JLabel("To Return Date:");
-		lblDateToReturn.setFont(new Font("Lucida Grande", Font.PLAIN, 8));
-		lblDateToReturn.setBounds(269, 173, 86, 16);
-		frame.getContentPane().add(lblDateToReturn);
-		
 		//Box to display name of clicked item
 		txtHolderName = new JTextField();
 		txtHolderName.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
@@ -317,20 +310,6 @@ public class EquipmentDatabase {
 		textBorrowStatus.setBounds(325, 116, 101, 16);
 		frame.getContentPane().add(textBorrowStatus);
 		
-		//Box to display borrow date of clicked item		
-		textBorrowDate = new JTextField();
-		textBorrowDate.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		textBorrowDate.setColumns(10);
-		textBorrowDate.setBounds(335, 144, 91, 16);
-		frame.getContentPane().add(textBorrowDate);
-		
-		//Box to display due date of clicked item
-		textDeadline = new JTextField();
-		textDeadline.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
-		textDeadline.setColumns(10);
-		textDeadline.setBounds(335, 173, 91, 16);
-		frame.getContentPane().add(textDeadline);
-		
 		//Clear button
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -340,11 +319,9 @@ public class EquipmentDatabase {
 				txtHolderName.setText(null);
 				textHolderID.setText(null);
 				textBorrowStatus.setText(null);
-				textBorrowDate.setText(null);
-				textDeadline.setText(null);
 			}
 		});
-		btnClear.setBounds(279, 206, 148, 29);
+		btnClear.setBounds(278, 182, 148, 41);
 		frame.getContentPane().add(btnClear);
 		
 		JLabel labelItemName = new JLabel("Equipment Type:");
@@ -373,7 +350,7 @@ public class EquipmentDatabase {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(259, 6, 173, 192);
+		panel.setBounds(259, 6, 173, 164);
 		frame.getContentPane().add(panel);
 	}
 }
