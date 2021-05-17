@@ -121,8 +121,7 @@ public class TeacherLogin {
 				else {
 					//Getting the user inputs
 					String userName = teacherName.getText();
-					String idText = teacherID.getText();
-					int id = Integer.parseInt(idText);
+					String id = teacherID.getText();
 					
 					//Accessing the table model
 					tableModel = new UserTableModel();
@@ -192,8 +191,7 @@ public class TeacherLogin {
 				else {
 					//Getting the user inputs
 					String userName = teacherName.getText();
-					String idText = teacherID.getText();
-					int id = Integer.parseInt(idText);
+					String id = teacherID.getText();
 					
 					//Accessing the table model
 					tableModel = new UserTableModel();
