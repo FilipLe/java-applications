@@ -95,7 +95,7 @@ public class AdminEditUser {
 		frame.getContentPane().add(btnEdit);
 		
 		/*
-		 * Delete button
+		 * DELETE button
 		 */
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
@@ -105,7 +105,6 @@ public class AdminEditUser {
 					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
 				}
 				else {
-					//delete currentName and currentID in the json file --> find them and then delete
 					//Load up the table model
 					tableModel = new UserTableModel();
 					tableModel.load();
@@ -139,12 +138,21 @@ public class AdminEditUser {
 						counter ++;
 					}
 					//Access user at this position and replace them with new data
-					System.out.println("User at: "+ positionOfUser);
-					/*
-					tableModel.update(positionOfUser);
+					//Remove the old user
+					//Add new user
 					
+					//Accessing user's position
+					System.out.println("User at: "+ positionOfUser);
+					
+					//Removing user at that position
+					tableModel.removeRowAt(positionOfUser);
+					
+					//Save
 					tableModel.save();
-					*/
+					
+					//Go back to main screen to Admin
+					frame.dispose();
+					AdminIndex.main(null);
 				}
 			}
 		});
