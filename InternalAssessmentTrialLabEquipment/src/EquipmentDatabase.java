@@ -36,8 +36,7 @@ public class EquipmentDatabase {
 	private JTextField textField_EquipmentType;
 	private JTextField textField_ITEM_ID;
 	public boolean available;
-	public String pathTakenIcon = "/Users/nguyenle/Desktop/My_Work/TBS/IB/Computer Science/Java Lessons with Mr Cressey/Internal Assessment Applications/borrowed.png";
-	public String pathAvailableIcon = "/Users/nguyenle/Desktop/My_Work/TBS/IB/Computer Science/Java Lessons with Mr Cressey/Internal Assessment Applications/available.png";
+	
 
 	/**
 	 * Launch the application.
