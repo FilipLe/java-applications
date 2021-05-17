@@ -202,7 +202,7 @@ public class EditUserScreen {
 				else {
 					
 					/**
-					 * To edit user detail, we replace there details at their index
+					 * To edit user detail, we delete them and and add new details
 					 */
 					
 					//Load up the table model
@@ -238,12 +238,31 @@ public class EditUserScreen {
 						counter ++;
 					}
 					//Access user at this position and replace them with new data
+					//Remove the old user
+					//Add new user
+					
+					//Accessing user's position
 					System.out.println("User at: "+ positionOfUser);
 					
+					//Removing user at that position
 					tableModel.removeRowAt(positionOfUser);
+					
+					//Add new user (replace)
+					String newname = textField_NewName.getText();
+					String newuserID = textField_NewID.getText();
+					User newUser = new User(newname,newuserID);
+					tableModel.addUser(newUser);
+					
 					tableModel.save();
 					
 					System.out.println("Saved");
+					
+					//Take back to edit user screen
+					//Close this window
+					frame.dispose();
+					
+					//Run admin edit user screen
+					AdminEditUser.main(null);
 				}
 				
 			}
