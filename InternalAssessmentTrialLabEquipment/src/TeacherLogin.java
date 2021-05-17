@@ -166,8 +166,8 @@ public class TeacherLogin {
 							//Close current window
 							frame.dispose();
 							
-							//Take user to their index screen
-							TeachersIndex.main(null);
+							//Take user to borrowing screen
+							EquipmentsTeachers.main(null);
 						}			
 						//Increment by 1 to move to next user
 						counter++;
@@ -240,8 +240,8 @@ public class TeacherLogin {
 							//Close current window
 							frame.dispose();
 							
-							//Take user to their index screen
-							TeachersIndex.main(null);
+							//Take user to borrowing screen
+							EquipmentsTeachers.main(null);
 						}			
 						//Increment by 1 to move to next user
 						counter++;
