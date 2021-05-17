@@ -151,10 +151,10 @@ public class TeacherLogin {
 							exist = true;
 							
 							//Save the user's name so that later we know who to access data
-							loggedInUser = teacherName.getText();
+							loggedInUser = userName;
 							
 							//Save the user's ID (unique number) so that later we know who to access data
-							loggedInUserID = teacherID.getText();
+							loggedInUserID = id;
 							
 							//Empty field entries
 							teacherName.setText(null);
@@ -224,7 +224,11 @@ public class TeacherLogin {
 							exist = true;
 							
 							//Save the user's name so that later we know who to access data
-							loggedInUser = teacherName.getText();
+							loggedInUser = userName;
+							
+							//Save the user's ID (unique number) so that later we know who to access data
+							loggedInUserID = id;
+							
 							
 							//Empty field entries
 							teacherName.setText(null);
