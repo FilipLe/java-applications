@@ -14,20 +14,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 
 public class EquipmentsTeachers {
 
 	/*
-	 * CHECK ONENOTE JAVA TRIAL BLUE ARROWS TO SEE THE DESIGN I AM GOING FOR
-	 * 
-	 * Now work on JSON for both Equipment managing and User managing, and then go to other Program with Status Lights
-	 * 
-	 * EQUIPMENT DATABASE FOR TEACHERS
-	 * 
-	 * 
-	 * GOAL: to add the display "available"/"taken" feature
+	 * TEACHER'S BORROWING SCREEN
 	 */
 		
 	private JFrame frame;
@@ -35,6 +30,13 @@ public class EquipmentsTeachers {
 	private JTextField textField_EquipmentType;
 	private JTextField textField_ITEM_ID;
 	public boolean available;
+	private EquipmentTableModel tableModel;
+	private EquipmentClass clickedEquipment;
+	private String currentUser;
+	private String currentUserID;
+	private String selectedEquipmentID;
+	private String selectedEquipmentType;
+	private int clickedItemPosition;
 
 	/**
 	 * Launch the application.
@@ -96,11 +98,33 @@ public class EquipmentsTeachers {
                 //Accessing the second outer most child node ==> equipment type
                 String equipmentType = path.getPathComponent(pathCount-2).toString();
                 
+                
                 //Only if the item Id clicked is an integer, we display on the information board
                 if(isInteger(itemId) == true) {
-	                //Set the fields to corresponding clicked item
+                	//Loading in JSON to check list of equipments and their properties
+                	tableModel = new EquipmentTableModel();
+					tableModel.load();
+					
+					//Looping through the equipments until we find the right one
+					int tableSize = tableModel.getRowCount();
+					int counter = 0;
+					boolean found = false;
+					while(found == false && counter < tableSize) {
+						EquipmentClass equipment = tableModel.getEquipment(counter);
+						if(itemId.equals(equipment.getID())) {
+							found = true;
+							clickedItemPosition = counter;
+						}
+						counter++;
+					}
+					
+					//Extract all the properties of that equipment
+					clickedEquipment = tableModel.getEquipment(clickedItemPosition);
+					
+					//Set the fields to corresponding clicked item
 	                textField_EquipmentType.setText(equipmentType);
 					textField_ITEM_ID.setText(itemId);
+					textBorrowStatus.setText(clickedEquipment.getStatus());
                 }
             }
         };
@@ -201,8 +225,7 @@ public class EquipmentsTeachers {
 	    DefaultMutableTreeNode therm5101=new DefaultMutableTreeNode("5101");
 	    DefaultMutableTreeNode therm5102=new DefaultMutableTreeNode("5102");
 	    DefaultMutableTreeNode therm5103=new DefaultMutableTreeNode("5103");
-	    DefaultMutableTreeNode therm5104=new DefaultMutableTreeNode("5104");
-	    thermometer.add(therm5100);thermometer.add(therm5101);thermometer.add(therm5102);thermometer.add(therm5103);thermometer.add(therm5104);
+	    thermometer.add(therm5100);thermometer.add(therm5101);thermometer.add(therm5102);thermometer.add(therm5103);
 	    
 	    /*
 	     *--------------------------------------------------------------------------------------------- 
@@ -248,7 +271,7 @@ public class EquipmentsTeachers {
 		textBorrowStatus = new JTextField();
 		textBorrowStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		textBorrowStatus.setColumns(10);
-		textBorrowStatus.setBounds(325, 90, 101, 16);
+		textBorrowStatus.setBounds(325, 90, 111, 16);
 		frame.getContentPane().add(textBorrowStatus);
 		
 		//Clear button
@@ -270,9 +293,9 @@ public class EquipmentsTeachers {
 		
 		//Box to display equipment name of clicked item
 		textField_EquipmentType = new JTextField();
-		textField_EquipmentType.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		textField_EquipmentType.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		textField_EquipmentType.setColumns(10);
-		textField_EquipmentType.setBounds(335, 34, 91, 16);
+		textField_EquipmentType.setBounds(335, 34, 101, 16);
 		frame.getContentPane().add(textField_EquipmentType);
 		
 		JLabel lblEquipmentId = new JLabel("Equipment ID:");
@@ -284,12 +307,12 @@ public class EquipmentsTeachers {
 		textField_ITEM_ID = new JTextField();
 		textField_ITEM_ID.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 		textField_ITEM_ID.setColumns(10);
-		textField_ITEM_ID.setBounds(325, 63, 101, 16);
+		textField_ITEM_ID.setBounds(325, 63, 111, 16);
 		frame.getContentPane().add(textField_ITEM_ID);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(259, 23, 173, 103);
+		panel.setBounds(259, 23, 185, 103);
 		frame.getContentPane().add(panel);
 		
 		JLabel lblEquipment = new JLabel("Equipment Information:");
@@ -301,9 +324,74 @@ public class EquipmentsTeachers {
 		 * BORROW BUTTON
 		 */
 		JButton btnBorrow = new JButton("BORROW");
+		
+		//The user that is currently borrowing items --> so we look for them in json
+		currentUser = TeacherLogin.loggedInUser;
+		currentUserID = TeacherLogin.loggedInUserID;
+		
+		//Listener function
 		btnBorrow.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				//if one of the fields is empty, inform them operation cannot be performed
+				if(textBorrowStatus.getText().equals("") || textField_EquipmentType.getText().equals("") || textField_ITEM_ID.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Please fill in every field","Please fill in every field", JOptionPane.ERROR_MESSAGE);
+				}
+				else 
+				{ 
+					//
+					//We access the clicked item
+					//We delete it, and add it again, but with different HolderID, HolderName, and Status
+					//
+					
+					//Get the current selected item's ID
+					selectedEquipmentID = textField_ITEM_ID.getText();
+					
+					//Store the current selected item's Type
+					selectedEquipmentType = textField_EquipmentType.getText();
+					
+					
+					//Loading in JSON to check list of equipments and their properties
+                	tableModel = new EquipmentTableModel();
+					tableModel.load();
+					
+					//Looping through the equipments until we find the right equipment with matching ID
+					int tableSize = tableModel.getRowCount();
+					int counter = 0;
+					boolean found = false;
+					while(found == false && counter < tableSize) {
+						EquipmentClass equipment = tableModel.getEquipment(counter);
+						//Check if 
+						if(selectedEquipmentID.equals(equipment.getID())) {
+							found = true;
+							clickedItemPosition = counter;
+						}
+						counter++;
+					}
+					
+					//Now we delete that equipment
+					tableModel.removeRowAt(clickedItemPosition);
+					
+					//And add the equipment with same type, same ID, but new Holder Name, HolderID, and status
+					String equipmentType = selectedEquipmentType;
+					String equipmentID = selectedEquipmentID;
+					String newHolderName = currentUser;
+					String newHolderID = currentUserID;
+					String newStatus = "borrowed";
+					
+					//Create a new equipment based on that new info
+					EquipmentClass newEquipment = new EquipmentClass(equipmentType,equipmentID,newStatus,newHolderName,newHolderID);
+					tableModel.addEquipment(newEquipment);
+					
+					//Save the changes
+					tableModel.save();
+					
+					//close the current window
+					frame.dispose();
+					
+					//Go back to menu selection page for teachers
+					TeachersIndex.main(null);
+				}
 			}
 		});
 		btnBorrow.setBounds(264, 150, 162, 44);
