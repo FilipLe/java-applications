@@ -4,9 +4,9 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 
 public class User {
 	private String name;
-	private int UserID;
+	private String UserID;
 	
-	User(String name, int UserID)
+	User(String name, String UserID)
 	{
 		this.name = name;
 		this.UserID = UserID;
@@ -23,7 +23,7 @@ public class User {
 	}
 	
 	//Output UserID
-	public int getUserID()
+	public String getUserID()
 	{
 		return UserID;
 	}
@@ -34,7 +34,7 @@ public class User {
 		JsonObject jo = new JsonObject();
 		
 		//JSON format: <key>:<value> --> UserID is unique ==> Make it a key
-		jo.put(String.valueOf(UserID), name);
+		jo.put("name", name);
 		
 		/*
 		 * [
@@ -49,10 +49,10 @@ public class User {
 	}
 	
 	//This is going to take a Json Object and return a user with all the data stored in that object
-	public static User fromJsonObject(JsonObject jo) {
+	public static User fromJsonObject(String userID, JsonObject jo) {
+		//Instead of strings name and UserID, we need it to get key and values pair
 		String name = (String)jo.get("name");
-		int UserID = ((BigDecimal)jo.get("UserID")).intValue();
-		return new User(name,UserID);
+		return new User(name,userID);
 	}
 }
 
