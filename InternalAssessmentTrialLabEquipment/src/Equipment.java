@@ -54,6 +54,14 @@ public class Equipment {
 		jo.put("holderName", holderName);
 		jo.put("holderID", holderID);
 		
+		
+		/*
+		 * 1014
+		 * {
+		 * 	1014:{"name":"test tube","status":"available}
+		 * 	2032:{"name":"beaker","status":available}
+		 * }
+		 */
 		return jo;
 	}
 	
