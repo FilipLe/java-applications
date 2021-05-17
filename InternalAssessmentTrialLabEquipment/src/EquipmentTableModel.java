@@ -33,7 +33,7 @@ public class EquipmentTableModel extends AbstractTableModel{
 	}
 	
 	
-	public void addUser(EquipmentClass newEquipment) {
+	public void addEquipment(EquipmentClass newEquipment) {
 		//Adding new user into the table
 		equipmentList.add(newEquipment);
 		
