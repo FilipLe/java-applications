@@ -391,11 +391,14 @@ public class EquipmentsTeachers {
 						//Save the changes
 						tableModel.save();
 						
+						//Message Dialog Box
+						JOptionPane.showMessageDialog(null, "Item Borrowed Successfully!","Item Borrowed Successfully!", JOptionPane.INFORMATION_MESSAGE);
+						
 						//close the current window
 						frame.dispose();
 						
 						//Go back to menu selection page for teachers
-						TeachersIndex.main(null);
+						UIMain.main(null);
 					}
 				}
 			}
