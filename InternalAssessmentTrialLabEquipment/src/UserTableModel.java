@@ -27,7 +27,7 @@ public class UserTableModel extends AbstractTableModel{
 			/*
 			 * We do not need this anymore since data is already saved through JSON
 			 *
-			new User("Admin", 0)
+			new User("Admin", "0")
 			*/
 	};
 	
@@ -147,11 +147,11 @@ public class UserTableModel extends AbstractTableModel{
 	//Saving as Json Data with path provided
 	public void save(Path path) {
 		//Converting all of the Users in the table model into JSON Objects
-		JsonArray ja = new JsonArray();
+		JsonObject ja = new JsonObject();
 		
 		//For each user in the list of users, we will add them into the json array
 		for(User user : usersList) {
-			ja.add(user.toJsonObject());
+			ja.put(user.getUserID(), user.toJsonObject());
 		}
 		
 		//Convert Json array to json text
@@ -159,7 +159,7 @@ public class UserTableModel extends AbstractTableModel{
 		
 		//Writing that json text to the file path
 		try {
-			Files.write(path, jsontext.getBytes(), StandardOpenOption.CREATE);
+			Files.write(path, jsontext.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -178,7 +178,7 @@ public class UserTableModel extends AbstractTableModel{
 		
 		//Declaring json variables
 		String jsonText = null;
-		JsonArray ja = null;
+		JsonObject rootObject = null;
 		
 		//Read in the text from the file
 		try {
@@ -189,19 +189,20 @@ public class UserTableModel extends AbstractTableModel{
 		
 		//Convert the text into Json Objects
 		try {
-			ja = (JsonArray)Jsoner.deserialize(jsonText);
+			rootObject = (JsonObject)Jsoner.deserialize(jsonText);
 		} catch (JsonException e) {
 			throw new RuntimeException(e);
 		}
 		
-		for(Object object : ja) {
+		for(Object key : rootObject.keySet()) {
+			String userId = key.toString();
 			//Each object here is the teacher that we saved from the User class
 			
 			//Convert the object into json object first
-			JsonObject jo = (JsonObject)object;
+			JsonObject jo = (JsonObject)rootObject.get(userId);
 			
 			//Create user from the json object
-			User user = User.fromJsonObject(jo);
+			User user = User.fromJsonObject(userId, jo);
 			
 			//add that user to the list of users
 			usersList.add(user);
