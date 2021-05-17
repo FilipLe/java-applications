@@ -33,11 +33,16 @@ public class User {
 	public JsonObject toJsonObject() {
 		JsonObject jo = new JsonObject();
 		
-		//JSON format: <key>:<value> --> User's name
-		jo.put("name", name);
+		//JSON format: <key>:<value> --> UserID is unique ==> Make it a key
+		jo.put(String.valueOf(UserID), name);
 		
-		//JSON format: <key>:<value> --> User's ID
-		jo.put("UserID", UserID);
+		/*
+		 * [
+		 * 	{7159:"Filip"},
+		 * 	{3244:"Jason},
+		 * 	etc.
+		 * ]
+		 */
 		
 		//return the JSON Object created
 		return jo;
