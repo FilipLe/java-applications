@@ -36,6 +36,8 @@ public class EquipmentDatabase {
 	private JTextField textField_EquipmentType;
 	private JTextField textField_ITEM_ID;
 	public boolean available;
+	private EquipmentTableModel tableModel;
+	private EquipmentClass clickedEquipment;
 	
 
 	/**
@@ -101,9 +103,28 @@ public class EquipmentDatabase {
                 
               //Only if the item Id clicked is an integer, we display on the information board
                 if(isInteger(itemId) == true) {
-	                //Set the fields to corresponding clicked item
+					tableModel = new EquipmentTableModel();
+					tableModel.load();
+					int tableSize = tableModel.getRowCount();
+					int counter = 0;
+					boolean found = false;
+					while(found == false && counter < tableSize) {
+						EquipmentClass equipment = tableModel.getEquipment(counter);
+						if(itemId.equals(equipment.getID())) {
+							found = true;
+						}
+						counter++;
+					}
+					
+					clickedEquipment = tableModel.getEquipment(counter);
+					
+					//Set the fields to corresponding clicked item
 	                textField_EquipmentType.setText(equipmentType);
 					textField_ITEM_ID.setText(itemId);
+					txtHolderName.setText(clickedEquipment.getHolderName());
+					textHolderID.setText(clickedEquipment.getHolderID());
+					textBorrowStatus.setText(clickedEquipment.getStatus());
+					
                 }
             }
         };
