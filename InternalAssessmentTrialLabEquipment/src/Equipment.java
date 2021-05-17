@@ -4,13 +4,13 @@ import com.github.cliftonlabs.json_simple.JsonObject;
 
 public class Equipment {
 	private String type;
-	private int ID;
+	private String ID;
 	private String status;
 	private String holderName;
 	private String holderID;
 	
 	//Constructor for Equipment
-	Equipment(String type, int ID, String status, String holderName, String holderID){
+	Equipment(String type, String ID, String status, String holderName, String holderID){
 		this.type = type;
 		this.ID = ID;
 		this.status = status;
@@ -25,7 +25,7 @@ public class Equipment {
 		return type;
 	}
 	
-	public int getID() {
+	public String getID() {
 		return ID;
 	}
 	
@@ -46,14 +46,14 @@ public class Equipment {
 	 * Converting to json
 	 */
 	public JsonObject toJsonObject() {
-		JsonObject jo = new JsonObject();
-	
-		jo.put("type", type);
-		jo.put("ID", ID);
-		jo.put("status", status);
-		jo.put("holderName", holderName);
-		jo.put("holderID", holderID);
-		
+		//<key>:<value>
+		JsonObject uniqueID = new JsonObject();
+		JsonObject properties = new JsonObject();
+		uniqueID.put(ID, properties);
+		properties.put("type", type);
+		properties.put("status", status);
+		properties.put("holderName", holderName);
+		properties.put("holderID", holderID);
 		
 		/*
 		 * 1014
@@ -62,16 +62,17 @@ public class Equipment {
 		 * 	2032:{"name":"beaker","status":available}
 		 * }
 		 */
-		return jo;
+		return uniqueID;
 	}
 	
 	//This is going to take a Json Object and return an equipment with all the data stored in that object
-	public static Equipment fromJsonObject(JsonObject jo) {
-		String type = (String)jo.get("type");
-		int ID = ((BigDecimal)jo.get("ID")).intValue();
-		String status = (String)jo.get("status");
-		String holderName = (String)jo.get("holderName");
-		String holderID = (String)jo.get("holderID");
+	public static Equipment fromJsonObject(JsonObject uniqueID) {
+		//We need to get key instead of "ID" because that string will not exist
+		String ID = (String)uniqueID.get("ID");
+		String type = (String)uniqueID.get("type");
+		String status = (String)uniqueID.get("status");
+		String holderName = (String)uniqueID.get("holderName");
+		String holderID = (String)uniqueID.get("holderID");
 		return new Equipment(type,ID,status,holderName,holderID);
 	}
 }
