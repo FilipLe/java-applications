@@ -56,10 +56,10 @@ public class Equipment {
 		properties.put("holderID", holderID);
 		
 		/*
-		 * 1014
+		 * Format we want to save it in:
 		 * {
-		 * 	1014:{"name":"test tube","status":"available}
-		 * 	2032:{"name":"beaker","status":available}
+		 * 	1014:{"name":"test tube","status":"unavailable","holder name":"Joe","holderID":"1292"},
+		 * 	2032:{"name":"beaker","status":"available","holder name":"null","holderID":"null"}
 		 * }
 		 */
 		return uniqueID;
