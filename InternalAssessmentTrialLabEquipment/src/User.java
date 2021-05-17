@@ -37,11 +37,11 @@ public class User {
 		jo.put("name", name);
 		
 		/*
-		 * [
-		 * 	{7159:"Filip"},
-		 * 	{3244:"Jason},
-		 * 	etc.
-		 * ]
+		 * Format of data:
+		 * {
+		 *  "0": { "name" : "Admin" },
+		 *  "8732": { "name" : "Filip" }
+		 *	}
 		 */
 		
 		//return the JSON Object created
