@@ -191,16 +191,10 @@ public class EquipmentTableModel extends AbstractTableModel{
 		
 		for(Object key : rootObject.keySet()) {
 			String Id = key.toString();
-			//Each object here is the teacher that we saved from the User class
-			
-			//Convert the object into json object first
+			//Obtaining JSON Object using ID, which is the key of the equipment object
 			JsonObject jo = (JsonObject)rootObject.get(Id);
 			
-			/*
-			 * !!!
-			 */
-			
-			//Create user from the json object
+			//Getting the JSON object of the equipment with matching ID
 			EquipmentClass equipment = EquipmentClass.fromJsonObject(Id, jo);
 			
 			//add that user to the list of users
