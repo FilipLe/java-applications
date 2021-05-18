@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 
@@ -37,6 +39,9 @@ public class EquipmentDatabase {
 	private EquipmentTableModel tableModel;
 	private EquipmentClass clickedEquipment;
 	private int positionOfEquipment;
+	private String selectedEquipmentID;
+	private String selectedEquipmentType;
+	private int clickedItemPosition;
 	
 
 	/**
@@ -366,6 +371,67 @@ public class EquipmentDatabase {
 				 * and Status goes from borrowed to available
 				 */
 				
+				//If no equipment is selected --> error
+				if(textField_EquipmentType.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Please select an item.","Please select an item.", JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					//If it is already returned --> Can't return
+					if(textBorrowStatus.getText().equals("available")) {
+						JOptionPane.showMessageDialog(null, "Item already returned","Item already returned", JOptionPane.ERROR_MESSAGE);
+					}
+					else {
+						//Get the current selected item's ID
+						selectedEquipmentID = textField_ITEM_ID.getText();
+						
+						//Store the current selected item's Type
+						selectedEquipmentType = textField_EquipmentType.getText();
+						
+						//Loading in JSON to check list of equipments and their properties
+	                	tableModel = new EquipmentTableModel();
+						tableModel.load();
+						
+						//Looping through the equipments until we find the right equipment with matching ID
+						int tableSize = tableModel.getRowCount();
+						int counter = 0;
+						boolean found = false;
+						while(found == false && counter < tableSize) {
+							EquipmentClass equipment = tableModel.getEquipment(counter);
+							//Check if 
+							if(selectedEquipmentID.equals(equipment.getID())) {
+								found = true;
+								clickedItemPosition = counter;
+							}
+							counter++;
+						}
+						
+						//Now we delete that equipment
+						tableModel.removeRowAt(clickedItemPosition);
+						
+						//And add the equipment with same type, same ID, but Admin Holder Name and HolderID and different status
+						String equipmentType = selectedEquipmentType;
+						String equipmentID = selectedEquipmentID;
+						String newHolderName = "Admin";
+						String newHolderID = "0";
+						String newStatus = "available";
+						
+						//Create a new equipment based on that new info
+						EquipmentClass newEquipment = new EquipmentClass(equipmentType,equipmentID,newStatus,newHolderName,newHolderID);
+						tableModel.addEquipment(newEquipment);
+						
+						//Save the changes
+						tableModel.save();
+						
+						//Message Dialog Box
+						JOptionPane.showMessageDialog(null, "Item Returned Successfully!","Item Returned Successfully!", JOptionPane.INFORMATION_MESSAGE);
+						
+						//close the current window
+						frame.dispose();
+						
+						//Go back to menu selection page for teachers
+						UIMain.main(null);
+					}
+				}
 				
 			}
 		});
